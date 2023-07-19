@@ -16,7 +16,6 @@ const express = require('express');
  snippet_chat.post("/new",async(req,res)=>{
     //  the saving of the chat
      let {staff} = req.body;
-      console.log(staff);
     //   checking if real proto
     //  here we are going to be 
     //   deciding the field that is been use there
@@ -25,7 +24,6 @@ const express = require('express');
         real_proto = await Proto_here.findOne({_id : staff.pro_id})
       }else if(staff.type_of === "fault"){
         real_proto = await fault_db.findOne({_id : staff.pro_id})
-        console.log
       }
       
       if(real_proto){
@@ -38,6 +36,9 @@ const express = require('express');
           }) 
             await done_one_new_s_chat.save().then(
      ()=>{
+      //  here am going to be retunring the thing of
+      //  the small chat it and then 
+      //   here ia suppose to be 
         res.json({result :"done in the db"});    
      }
  ) 

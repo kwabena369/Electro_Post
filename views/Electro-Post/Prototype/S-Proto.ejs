@@ -736,7 +736,6 @@ all_small_ball.forEach(element =>{
 //  get the last two
  let of_king_current_ball = element.id.split("-")[3];
  let the_current_s_pro_there = element.id.split("-")[4];
-  console.log(`${of_king_current_ball}-${the_current_s_pro_there}`)
    if(of_king_current_ball === the_current_s_pro_there){
    }else{
  if(!element.classList.contains("hidden")){
@@ -800,7 +799,6 @@ function zeloxo_gate(src_now){
        
   let shower_hider = document.querySelector("#shower_hider")
        if(shower_hider.classList.contains("fa-eye")){
-         console.log("yes it conatine the thng")
         refresh_what_there(false)
        }else{
         refresh_what_there(true)
@@ -909,7 +907,6 @@ zeloxo_gate(_real_deal_image_);
     // or the file other element 
    
       
-      console.log(golden);
 
 
   let of_kind_there = 
@@ -926,7 +923,7 @@ snippet_chat_promt.addEventListener("click",function(event_claso){
    let done_here_now = event_claso.target.innerText
    if(done_here_now === "Yes"){
        create_One(mama,event.offsetX,event.offsetY,"<%=S_Pro.id%>",
-       golden,"fault")
+       golden,"proto")
        snippet_chat_promt.classList.toggle("hidden")
      }else {
        //  then it is beans

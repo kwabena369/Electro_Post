@@ -40,8 +40,6 @@ function comment_thing_area(where_X,where_y,sp_id,of_kind_clicked,type_here){
           the_real_deal  : real_staff_here_now,
           pro_id : sp_id,
           type_of  : type_here,
-//  specification of the kind of image click  
-//   == 
       of_kind  :  of_kind_clicked
      }
       fetch("/snippet_chat/new",{
@@ -63,7 +61,7 @@ function comment_thing_area(where_X,where_y,sp_id,of_kind_clicked,type_here){
  })
     }
  
- function create_One(mama_element,whereX,whereY,sp_id,of_which_image){
+ function create_One(mama_element,whereX,whereY,sp_id,of_which_image,type_of){
     //  for the basic
      let wrapper = document.createElement("span");
 
@@ -75,7 +73,8 @@ function comment_thing_area(where_X,where_y,sp_id,of_kind_clicked,type_here){
        wrapper.style.top = ((whereY - mama_element.offsetTop )/mama_element.offsetHeight)*100+ "%";
         
     //    then we are going to be appending it to the mama element 
-    comment_thing_area( wrapper.style.left,wrapper.style.top,sp_id,of_which_image)
+    comment_thing_area( wrapper.style.left,wrapper.style.top,sp_id,
+      of_which_image,type_of)
      mama_element.appendChild(wrapper)
  }
 
