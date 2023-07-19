@@ -1,0 +1,40 @@
+
+<% let date_then  = new Date(element.dateCreated) %>   
+   <% let date_now = new Date() %>     
+    <% let difference_millisec =  date_now - date_then %>     
+    <% let Number_second  = Math.floor((difference_millisec)/1000) %>     
+    <% let Number_minute  = Math.floor((difference_millisec)/(1000*60)) %>     
+    <% let Number_hours  = Math.floor((difference_millisec)/(1000*60*60)) %>     
+    <% let Number_day  = Math.floor((difference_millisec)/(1000*60*60*24)) %>     
+    <% let Number_week  = Math.floor((difference_millisec)/(1000*60*60*24*7)) %>     
+    <% let Number_month  = Math.floor((difference_millisec)/(1000*60*60*24*7*30)) %>     
+    <% let Number_year  = Math.floor((difference_millisec)/(1000*60*60*24*7*30*365)) %>     
+    <!-- making use of the  -->
+    
+     <% let time_passed; %>
+     
+   
+        <% if (Number_second <60) { %>
+            <% time_passed = Number_second+" s ago"%>
+            <%= time_passed %>
+        <% }else if(Number_minute>0 && Number_minute <60){ %>
+          <% time_passed = Number_minute+" m ago"%>
+          <%= time_passed %>
+           <% }else if(Number_hours>0 && Number_hours < 24){%>
+          <% time_passed = Number_hours+" h ago"%>
+            <%= time_passed %>
+             <% }else if(Number_day>0 && Number_day <7){%>
+              <% time_passed = Number_day+" day ago"%>
+              <%= time_passed %>
+                <% }else if(Number_week >0 && Number_week < 6){ %>
+              <% time_passed = Number_week+" week ago" %>
+              <%= time_passed %>
+                   <% }else if(Number_month>0&&Number_month <12){ %>
+              <% time_passed = Number_month+" month ago"%>
+               <%= time_passed %>
+                     <% }else if(Number_year>0){%>
+              <% time_passed = Number_year+" year ago"%>
+                           <%= time_passed %>
+                       <% } %>
+  
+  

@@ -1,0 +1,50 @@
+
+<!--    page were all the random project are going to be delivered -->
+  <div class="wrapper
+         w-full
+          p-4 
+          grid grid-cols-3 gap-4
+              border-solid
+               border-2
+  bg-transparent
+         m-1
+                  ">
+     
+    <% if ( typeof allsPrototype !== 'undefined' && allsPrototype !== null) { %>
+
+ <% allsPrototype.forEach(element => { %>
+  
+ <!--  for one instance of the project  -->
+  <div class="oneProject
+                 w-36
+                  h-3/4
+                
+                  text-center">
+
+<!--  here is userinfor the one who did  post the thing-->
+ 
+    <div class="userinfo
+     bg-yellow-200
+      p-2  ">
+      <%=  element.currentUser.StageName %>
+    </div>
+    <!-- here is for the image preview -->
+       <div class="image-video-preview
+                 w-full
+                 p-1">
+          <img src="prototypes<%= element.pp%>" alt="">
+       </div>
+            
+        <!-- for the name or the prototype-title -->
+          <div class="title-name
+                  ">
+                 <%= element.protypeName%>
+          </div>
+  </div>
+     
+ <% }) %>
+        <% }else{ %>
+
+              <%=  "there is nothing to srver" %>
+             <%  } %>
+  </div>

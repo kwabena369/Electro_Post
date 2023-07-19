@@ -1,0 +1,240 @@
+<!-- here is the  dispalying the thing and trying to do the editing 
+  -->
+  <% if ( typeof  current_shc !== null && typeof current_shc !== "undefined") { %>
+   <div class="wrapper_didwhat_sch
+   w-fit
+    flex
+    flex-col
+   p-16
+   gap-2
+   text-black
+   rounded-lg
+   bg-white">
+
+      <div class="zone_A flex flex-col space-x-2">
+
+     <!--   for the shc -->
+      <div class="institution_name m-2 w-fit ">
+          <small class="text-xl 
+          font-sans
+           font-bold
+            rounded-md"> Institution_Name</small>
+         <div contenteditable class="real_name
+          p-2 rounded-lg
+           larger:w-96
+           w-60
+          border-2 border-solid border-yellow-200 text-2xl font-sans">
+             <%= current_shc.Sch_Name %>
+         </div>
+      </div>
+           
+       <!--  what the person did -->
+  <div class="did_whats border-solid border-2
+  rounded-md
+    border-blue-400 flex flex-col ">
+   <small class="text-xl 
+   font-sans
+    font-bold
+     rounded-md"> DiD WHATS...</small>
+        <div class="didwhat_wrapper m-2 
+            h-fit p-4">
+       <% if (typeof didwhat_thing !== null && typeof didwhat_thing !== 'undefined') { %>
+         <% didwhat_thing.forEach(element => { %>
+           <div contenteditable  class="bg-orange-400 
+           single_did_what w-full m-3 p-4 rounded-md">
+             <%= element.Name %>
+           </div>
+         <% }) %>
+       <% } %> 
+        
+      
+        </div>
+        <button id="add_didwhat" class="bg-blue-500 p-4 rounded-md  m-2 w-fit">
+         Add_Some
+        </button>
+
+        </div>
+      
+   
+    
+    
+      </div>
+          
+
+       <!--  for the final decision -->
+        <div class="final_thing flex flex-row mt-5 justify-between items-center">
+          
+  <span class="bg-blue-500 rounded-lg w-fit p-4 m-auto cursor-pointer  delete_them">
+      Delete All
+  </span> 
+  <span class="cursor-pointer w-fit p-4 bg-blue-600 rounded-md " 
+  id="save_all">
+         save
+      </span>
+   </div>
+       
+   
+   </div>
+  <% } %>
+
+   <!-- for for the simple module of input -->
+    <div class="fixed hidden add_form  w-fit p-7 top-1/2 left-1/2 transform
+     -translate-x-1/2 z-50 -translate-y-1/2 bg-slate-600 rounded-md">
+     <div contenteditable class="new_didwhat bg-red-50 w-12 "> 
+     </div> 
+     <span class="cursor-pointer bg-blue-600 rounded-md p-1
+     " id="_add_now">
+            Add
+         </span>
+    </div>
+  <%- include('../overlay.ejs') %>
+   
+
+   
+   <script>
+     let add_didwhat = document.getElementById("add_didwhat");
+      let save_didwhat = document.getElementById("save_all");
+       let add_form = document.querySelector(".add_form")
+        let real_name = document.querySelector(".real_name")
+        // did what parent 
+         let did_what_parent  = document.querySelector(".didwhat_wrapper")
+     
+          let delete_them = document.querySelector(".delete_them");
+          let _add_now = document.getElementById("_add_now");
+        
+        // the value 
+         let new_didwhat = document.querySelector(".new_didwhat");
+        
+         //    for the display of single input field
+
+       
+          
+const elementsToHide = Array.from(document.querySelectorAll('*'));
+
+overlay.addEventListener('click', () => {
+
+  const overlayZIndex = parseInt(getComputedStyle(overlay).zIndex);
+
+  elementsToHide.forEach(element => {
+    const zIndex = parseInt(getComputedStyle(element).zIndex);
+    if (zIndex > overlayZIndex) {
+ if(!element.classList.contains("hidden")){
+    element.classList.toggle("hidden")  
+ }
+     }
+  });
+});
+
+
+ _add_now.addEventListener("click",()=>{
+   if(new_didwhat.innerText !== ''){
+    let didwhat_now = document.createElement("div");
+     didwhat_now.setAttribute("contenteditable","true")
+ 
+       didwhat_now.classList.add("bg-orange-400","single_did_what","m-3","p-4","w-full","rounded-md")
+     didwhat_now.innerText = new_didwhat.innerText;
+      did_what_parent.appendChild(didwhat_now);
+   }
+ })
+          
+
+add_didwhat.addEventListener("click",()=>{
+             add_form.classList.toggle("hidden");
+              overlay.classList.toggle("hidden")
+             
+         })
+          
+          // when the save btn is click 
+        
+           save_didwhat.addEventListener("click",()=>{
+                
+if (real_name.innerText !== '') {
+    // here we are going to be seaching for all the one will the 
+    //  did of the single_did_what and then  doing it in all array 
+     let all_didwhat =Array.from(document.querySelectorAll(".single_did_what"));
+        
+      let real_final_array = []
+       all_didwhat.forEach(element =>{
+        //   we are addint those which are not empty 
+          if(element.innerText !== ''){
+             real_final_array.push(element.innerText)
+          }
+      })
+   
+       
+  
+      //  here is the final item to sen to the other side
+           let go_there_final = { 
+              //  here if for the previous vlaue of theing
+               
+               pre_sch_name : '<%= current_shc.Sch_Name %>',
+              sch_name : real_name.innerText,
+              didwhat : real_final_array
+           }
+      
+  
+  
+  
+                //  making a fetch request to save it 
+                 fetch("/setting/u/save_sch_edit",{
+                   method : "POST",
+                   headers : {"Content-Type":"application/json"},
+                    body : JSON.stringify(go_there_final)
+                 }).then(
+                    res =>{
+                       if(res.redirected){
+                         window.location.href = res.url
+                       }
+                    }
+                 )
+  }
+             }
+          )
+   
+   
+          delete_them.addEventListener("click",()=>{
+                
+                if (real_name.innerText !== '') {
+                    // here we are going to be seaching for all the one will the 
+                    //  did of the single_did_what and then  doing it in all array 
+                     let all_didwhat =Array.from(document.querySelectorAll(".single_did_what"));
+                        
+                      let real_final_array = []
+                       all_didwhat.forEach(element =>{
+                        //   we are addint those which are not empty 
+                          if(element.innerText !== ''){
+                             real_final_array.push(element.innerText)
+                          }
+                      })
+                   
+                       
+                  
+                      //  here is the final item to sen to the other side
+                           let go_there_final = { 
+                              //  here if for the previous vlaue of theing
+                               
+                               pre_sch_name : '<%= current_shc.Sch_Name %>',
+                              sch_name : real_name.innerText,
+                              didwhat : real_final_array
+                           }
+                      
+                  
+                  
+                  
+                                //  making a fetch request to save it 
+                                 fetch("/setting/u/delete_sch",{
+                                   method : "POST",
+                                   headers : {"Content-Type":"application/json"},
+                                    body : JSON.stringify(go_there_final)
+                                 }).then(
+                                    res =>{
+                                       if(res.redirected){
+                                         window.location.href = res.url
+                                       }
+                                    }
+                                 )
+                  }
+                             }
+                          )
+                   
+     </script>

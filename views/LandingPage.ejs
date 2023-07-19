@@ -1,0 +1,271 @@
+
+  
+
+  
+     
+  
+   
+
+ <!-- <script src="https://cdn.socket.io/4.3.1/socket.io.min.js"></script>/ -->
+
+
+          <!-- here is going to be the Project which are in the db -->
+<% if (typeof  prototypes != null && typeof prototypes !=='undefined') { %>
+    <% prototypes.forEach(element => { %>
+      <div
+       class="
+        flex
+        flex-col
+       oneProject
+        box-border
+         border-2
+         p-3 bg-slate-300
+
+          
+        w-4/5
+        mt-6
+        mb-4
+        rounded-lg
+        ">
+      
+
+        <!--  for the user info -->
+ <!-- information about the user -->
+<div class="userinfo
+w-full
+flex
+ m-0
+ relative
+   rounded-tr-full
+   text-black
+   font-serif
+    ">
+  <span  class="
+  userprofile 
+    text-xs
+    flex
+    w-full
+    items-end
+    "> 
+    
+   <img
+    class="
+    w-11
+    h-11
+    rounded-full
+      "
+   src="<% if (element.currentUser.userProfile !== ""){ %> userProfile/<%=element.currentUser.userProfile %> <% } else{%><%="/Default-Profile.png "%><% } %>"
+   >
+  <span class="handlename
+  ">
+   <a href=" /<%=element.currentUser.Userhandle%>">
+    <%= element.currentUser.Userhandle %>
+    </a>
+    <br> 
+      <small>what ever.....</small>
+       <%= element._tag_array%>
+ </span>
+  </span>
+</div>
+
+<!-- for the tile -->
+<div class="title">
+  <span
+  class=" m-2 font-sans font-semibold">
+ <%= element.protypeName %>
+ </span>
+</div>
+ 
+
+<div id="actual_preview" class="actual-preview 
+">
+      <a class="single_pp" href='/prototype/one_now/?proto_id=<%=element._id%>'> 
+      
+       <!-- here is the checking
+         wheather it is img of vedio -->
+      <% if (element.pp.split('.')[1] === "mp4") { %>
+       <video src="/<%=element.pp%>/p" class="rounded-lg" controls></video>
+      <% } else{%>
+ <img
+ class=" w-full
+  rounded-lg
+h-32
+m-0" src="/<%=element.pp%>/p" alt="no image">
+      <% } %>
+
+</a>
+
+<div class="some_infors  mt-1 rounded-lg m-auto
+bg-gray-800 flex flex-row items-center space-x-1 justify-center">
+       <div class="time_passed
+        flex flex-row items-center
+         text-white rounded-lg 
+         w-full
+         justify-between p-1 ">
+ 
+         
+<% let date_then  = new Date(element.dateCreated) %>   
+<% let date_now = new Date() %>     
+ <% let difference_millisec =  date_now - date_then %>     
+ <% let Number_second  = Math.floor((difference_millisec)/1000) %>     
+ <% let Number_minute  = Math.floor((difference_millisec)/(1000*60)) %>     
+ <% let Number_hours  = Math.floor((difference_millisec)/(1000*60*60)) %>     
+ <% let Number_day  = Math.floor((difference_millisec)/(1000*60*60*24)) %>     
+ <% let Number_week  = Math.floor((difference_millisec)/(1000*60*60*24*7)) %>     
+ <% let Number_month  = Math.floor((difference_millisec)/(1000*60*60*24*7*30)) %>     
+ <% let Number_year  = Math.floor((difference_millisec)/(1000*60*60*24*7*30*365)) %>     
+ <!-- making use of the  -->
+ 
+  <% let time_passed; %>
+  
+<span class="time font-serif text-xl">
+     <% if (Number_second <60) { %>
+         <% time_passed = Number_second+" s ago"%>
+         <%= time_passed %>
+     <% }else if(Number_minute>0 && Number_minute <60){ %>
+       <% time_passed = Number_minute+" m ago"%>
+       <%= time_passed %>
+        <% }else if(Number_hours>0 && Number_hours < 24){%>
+       <% time_passed = Number_hours+" h ago"%>
+         <%= time_passed %>
+          <% }else if(Number_day>0 && Number_day <7){%>
+           <% time_passed = Number_day+" day ago"%>
+           <%= time_passed %>
+             <% }else if(Number_week >0 && Number_week < 6){ %>
+           <% time_passed = Number_week+" week ago" %>
+           <%= time_passed %>
+                <% }else if(Number_month>0&&Number_month <12){ %>
+           <% time_passed = Number_month+" month ago"%>
+            <%= time_passed %>
+                  <% }else if(Number_year>0){%>
+           <% time_passed = Number_year+" year ago"%>
+                        <%= time_passed %>
+                    <% } %>
+                  </span>
+
+
+                     
+   <span id="like_wrapper" class="flex
+    flex-row 
+   w-fit  rounded-lg
+   border-2 
+    bg-gray-800
+   border-solid
+    border-red-500
+   p-2
+     justify-start m-auto">
+     <i id='<%=element.id%>'
+       class="fas fa-heart text-white
+        cursor-pointer
+       
+         like_btn p-1
+         text-sm
+          ">
+      <span id="Number-<%=element.id%>"
+         class="text-sm">
+         <%= element.Number_likes %>
+      </span>
+    </i>
+
+        <!-- for the comment section  -->
+       
+       <i class ="
+       fas fa-comment  
+       text-white
+       cursor-pointer
+        like_btn p-1
+        text-sm">
+          <span id="Another_Comment<%=element.id%>" 
+            class="text-sm"><%= element._Number_Comment %></span>
+       </i>
+
+   </span>
+    
+    <!-- here is for the number of view -->
+
+    <span id="viewer flex flex-row">
+      <i class="fas fa-eye"></i>
+       <!--  the real deal -->
+       <small
+        class="text-2xl font-sans"><%= element._Number_View%></small> viewer
+  </span>
+   
+   
+   <!-- then you would need to output it using the  -->
+  </div>
+
+
+
+  
+            <span> 
+  <div class="stack-image flex
+  items-center
+   text-fuchsia-400
+    text-2xl
+          flex-row ">
+   <% if (element._arraypp.length>1) { %>
+    <a  href='/prototype/one_now/?proto_id=<%=element._id%>'> 
+    +<%=element._arraypp.length-1%>
+     </a>
+   
+     <% } %>
+</div>
+ </span>
+  </div>
+           </div>
+
+
+
+
+
+     </div>
+       
+    <% }) %>
+<% }else{ %>                                                     
+
+    <div class="bg-red-500">
+       Hope
+    </div>
+    <% } %>
+
+ 
+ 
+
+
+
+  <!--  for the post-thing -->
+
+  <!-- we are going to display it -->
+  <script>
+
+      //   for the socket thing 
+      const socket = io(); 
+      //  
+
+      //  when we do get the someone like
+       
+  
+//   updating the number of comment in the section 
+ 
+socket.on("Another_Comment_number",(data)=>{
+   let what_taking_about = document.getElementById(`Another_Comment${data}`)
+             let number_current_comment = Number.parseInt(what_taking_about.innerText)
+    what_taking_about.innerText = number_current_comment+=1
+     console.log("someone commented")
+             })
+
+       
+      
+     
+    let single_pp = document.querySelectorAll(".single_pp");
+     
+     Array.prototype.forEach(element =>{ 
+      element.addEventListener("click",(event)=>{
+   console.log("Bean")
+       
+   fetch(id_url)
+     })
+       
+     })
+    
+       </script>

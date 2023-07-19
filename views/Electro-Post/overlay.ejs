@@ -1,0 +1,27 @@
+<div class="fixed top-0 left-0 w-full h-full
+   bg-black opacity-50 z-20 hidden
+    cursor-pointer
+    overlay"></div>
+     
+    <script>
+       
+        
+           let overlay12 = document.querySelector(".overlay")
+const elementsToHide = Array.from(document.querySelectorAll('*'));
+
+overlay12.addEventListener('click', () => {
+
+  const overlay1ZIndex = parseInt(getComputedStyle(overlay12).zIndex);
+
+  elementsToHide.forEach(element => {
+    const zIndex = parseInt(getComputedStyle(element).zIndex);
+    if (zIndex > overlay1ZIndex) {
+ if(!element.classList.contains("hidden")){
+    console.log("man you are suppose to go")
+    element.classList.toggle("hidden")  
+ }
+  
+     }
+  });
+});
+    </script>

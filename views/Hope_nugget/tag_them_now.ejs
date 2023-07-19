@@ -1,0 +1,55 @@
+
+   
+<div class="tag_here option w-fit p-1 rounded-lg  m-auto
+text-center
+mt-2
+space-x-2
+space-y-3
+ text-sm flex flex-wrap border-blue-200 border-solid border-2">
+   <% if (typeof tags !== null && typeof tags !== 'undefined') { %>
+ <% tags.forEach(element => { %>
+      <span class="bg-red-400 rounded-lg cursor-pointer font-sans p-1 ">
+         <i class="fas fa-tag"></i>
+         <%= element %>
+         </span>
+ <% }) %>
+ <% } %>
+</div>
+ 
+    
+ <script>
+    let array_selected_tags = [];
+     //  for parent
+let parent_clicker = document.querySelector(".option")
+
+     parent_clicker.addEventListener("click",(event)=>{
+           if(event.target.tagName === "SPAN"){
+            let  the_one  = event.target.innerText.replace(/\s/g,"");
+ 
+               
+            // check_if in the array 
+         //   that it is green bg
+            if(event.target.classList.contains("bg-green-400")){
+               //  move it out of the array  
+               // then change the bg 
+                 let index_now = array_selected_tags.indexOf(the_one);
+                 event.target.classList.remove("bg-green-400")
+                 event.target.classList.add("bg-red-400")
+                  array_selected_tags.splice(index_now,1);
+
+               }else{
+               //  add it to the array and then change the bg 
+                array_selected_tags.push(the_one);
+                event.target.classList.remove("bg-red-400")
+                 event.target.classList.add("bg-green-400")
+            }
+              
+           }
+
+
+       })
+
+
+   
+
+ </script>

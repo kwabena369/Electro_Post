@@ -1,0 +1,603 @@
+
+     
+      <% if (locals.user !== null && locals.user !== 'undefined') { %>
+       
+     <!-- this for the prototypeform  -->
+        <div id="post-pt" class="
+         normal_proto_post
+         fixed
+         top-1/2                                                                                     
+          left-1/2
+          -translate-x-1/2
+           -translate-y-1/2
+          rapper
+         hidden
+         h-fit
+          w-larger
+           bg-white
+            text-black
+            text-2xl
+            m-4
+            rounded
+            p-1
+             z-50
+            text-center
+            flex-col
+            justify-between
+         ">
+          <form action="/prototype/new" 
+            id="ultimate_form" method="post" 
+            enctype="multipart/form-data">
+        
+         <!--  for other info -->
+            
+         <input type="text" name="staff" class="hidden" id="staff">
+         <input type="text" name="staff2" class="hidden" id="staff_id">
+             
+            <!-- <h1
+             class="text-orange-500 
+                      border-b-2 
+                      border-solid
+                        border-pink-500
+                      mb-1">Post Prototype</h1> -->
+
+            <div class="ProtoypeName
+             m-auto
+             mb-2
+              p-1
+               w-full 
+                 border-b-2
+                  border-black
+                  outline-none
+             bg-none
+               rounded
+                   ">
+               <input
+                 type="text"
+                  class="w-full
+                   h-full
+                   bg-transparent
+                  outline-none
+                   placeholder-black
+                   border-none" name="prototypeName" 
+                   placeholder="Title of post.." id="title">
+                    
+             </div>
+
+ <div class="preview-file
+               m-auto
+                flex
+                mb-3
+              bg-transparent
+              w-full
+              rounded-md
+               text-xl
+               p-1
+               "
+                for="preview-file">
+                <!-- here is for image  -->
+   
+                        </div>
+        
+               
+                        <input 
+                         type="file" 
+                         class="hidden input_file_space"
+                        name="preview" id="preview-file"
+                         >
+                        <label 
+                        id="lable_for_file"
+                       for="preview-file"
+                          class="
+                           w-full
+                            m-auto
+                          text-center"
+                         >
+                          Upload-Image-Video
+                        
+                          <i class="fas fa-regular fa-cloud-arrow-up fa-beat"></i>
+                         </label><br>
+                         <span id="warm" class=" 
+                        bg-red-600 p-3 rounded-md hidden">
+                           Not support file
+                        </span> 
+<!-- the bigger area  -->
+
+             <div class="Description
+              ">
+              <div
+               class="
+                w-full
+                 h-56
+                 p-0
+                  rounded
+                  outline-none
+                   border-2
+                    border-orange-50
+                  bg-gray-100
+               overflow-x-clip
+                overflow-y-auto
+                 resize-none
+                 placeholder-black
+                  text-black                  "
+                
+                   contenteditable="true"
+               
+                
+                  
+                placeholder="Description..." id="text_area"></div>
+
+
+<!-- the content of this div is been keep it the input of the thing -->
+ 
+ <input type="text" class="hidden" 
+  name="descriptionPrototype" id="proto_input">
+ 
+   
+            <!-- for the addition option -->
+             <div class="add-them 
+              flex items-center ">
+              <!-- the btn -->
+              <span style="border-radius: 50%;"
+              id="option_add"
+              class="
+               cursor-pointer
+               p-2
+               text-white
+                text-2xl
+                 bg-green-700
+                ">
+                <i class="fas fa-plus">
+                   
+                </i>
+                            </span>
+              
+              <!-- for thing to desplay -->
+            
+            
+               
+            
+              <div class="things
+                   hidden w-0 
+                   duration-500 
+                  transform
+                   translate-x-0
+                   translate-y-0
+                    "
+                   style="animation: moveOutAnimation 1s forwards;
+                    ">
+  
+  <!-- the link input ifled  -->
+  <div 
+  id="link_parent"
+   class="input-section
+ parent_wrapper_link_add
+   w-full
+   p-2
+    hidden
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text"  id="input_section_"
+     class="
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         placeholder-black
+         "
+      placeholder="pasted link here" >
+       
+        <span 
+          id="Add-link"
+         class="show-hide
+        absolute
+         justify-center
+        top-1/4
+         right-2
+          bg-slate-950
+           rounded
+            p-1
+             cursor-pointer
+             text-white
+              mb-3
+         ">
+           Add
+        </span>
+        
+   </div>
+
+ 
+                 
+                    <i id="abb_link_btn" class="fas fa-paperclip
+                    bold p-1 m-1 rounded-md
+                    bg-yellow-400
+                    "></i>
+
+                    <span class="bold p-1 m-1 rounded-md bg-yellow-400">Bold</span>
+                  <span  class="bold p-1 m-1 rounded-md bg-yellow-400">Bold</span>
+                </div>
+                 
+             
+             </div>
+              <!-- for hodling of the element -->
+            </div>
+
+            <!-- here maybe for the selecting of the tags -->
+ <%- include('../../Hope_nugget/tag_them_now.ejs') %>
+ <!-- here is the hidden input form for the tags -->
+            <input type="text" 
+             name="tag_array" id="tag_array">
+              
+
+             <div class="proto_file">
+
+             
+               <div class="file_preview_ w-3/4 border-2
+                border-solid
+                 border-gray-500 
+                 rounded-md">
+                  
+               </div>
+              
+
+              
+              <!-- here is the section for addition of file and other -->
+
+                <input
+          
+                 type="file"
+                 name="prototype_files"
+                  id="prototype_files" class="hidden" >
+                <label for="prototype_files">
+                    Optional Upload of file
+                </label> 
+             </div>
+              
+
+                
+
+  <div class="btn m-3">
+     <button type="submit"
+      id="upload_btn" class="bg-black 
+     p-2 rounded-md  text-white  btn_prototype">upload</button>
+  </div>
+
+
+          </form> 
+
+        </div>
+        <% } %>
+
+<!-- here is another form for the sending of the file  -->
+ 
+  
+
+
+<script>
+let inputPreview = document.querySelector(".input_file_space")
+  let upload_lable = document.getElementById("lable_for_file");
+
+
+ 
+
+ let warm = document.getElementById("warm");
+// array of choice upload
+let imagetype = ["image/jpeg","image/png","image/jpg","video/mp4"];
+
+//  for the btn
+let sendbtn = document.getElementById("upload_btn");
+let themainWrapper = document.querySelector(".preview-file");
+//  check wheather there is red
+let check_red = (parent,no)=>{
+
+let substruc ;
+if(no ==="yes"){
+   substruc = 1
+}else{
+   substruc = 0
+}
+
+
+
+let number_Red = parent.
+getElementsByClassName("border-red-300").length -substruc;
+
+
+if (number_Red >= 0) {
+sendbtn.classList.add("pointer-events-none", "bg-red-400");
+sendbtn.classList.remove("bg-green-400");
+} else {
+sendbtn.classList.remove("pointer-events-none", "bg-red-400");
+sendbtn.classList.add("bg-green-400");
+}
+}
+
+
+
+//   setting  the path making new in the face
+
+
+inputPreview.onclick = function () {
+this.value=null
+};
+upload_lable.onclick = function(){
+   console.log(inputPreview.value)
+}
+
+
+
+//  here is the function to check the number od element in the contain 
+
+
+
+let observer = new MutationObserver((mutations) => {
+let elementCount = themainWrapper.getElementsByClassName("image-wrapper").length;
+let Videoelement = themainWrapper.getElementsByClassName("video-wrapper").length;
+ //  here are condition 
+//  --three image-- stop
+//  --- one video and other image -- stop
+//   --one video --go
+// 
+
+
+if (elementCount > 2) {
+// Trigger event or perform actions
+console.log('Too many elements!');
+upload_lable.innerText="Maximon Reached!!"
+ upload_lable.classList.add("pointer-events-none")
+}else if(elementCount !== 0 && Videoelement >0){
+  console.log('only one video there no other ');
+  upload_lable.classList.add("text-red-600")
+upload_lable.innerText="please delete one file image file"
+ upload_lable.classList.add("pointer-events-none")
+ sendbtn.classList.add("pointer-events-none", "bg-red-400");
+sendbtn.classList.remove("bg-green-400");
+}else if(elementCount === 0 && Videoelement>1){
+  console.log('there can be only one video ');
+  upload_lable.classList.add("text-red-600")
+upload_lable.innerText="please delete one file"
+ upload_lable.classList.add("pointer-events-none")
+ sendbtn.classList.add("pointer-events-none", "bg-red-400");
+sendbtn.classList.remove("bg-green-400");
+}else{
+upload_lable.classList.remove("pointer-events-none")
+    upload_lable.innerText="Video Ready"
+    sendbtn.classList.remove("pointer-events-none", "bg-red-400");
+sendbtn.classList.add("bg-green-400");
+}
+
+
+
+});
+
+observer.observe(themainWrapper, { childList: true });
+
+
+
+
+
+
+
+function handleFileUp(){
+ console.log( inputPreview.value);
+//   here is for the othere one in the sysytem 
+  let Colour = "border-green-300"
+      let filelist = Array.from(this.files)
+      let file_staff;
+       for (let i = 0; i < filelist.length; i++) {
+      let file = filelist[i];
+       let ultimateReader = new FileReader();
+        // for the image
+       file_staff = new Image();
+        // for deciding the with
+        let width_normal  = "w-24";
+         let nature_ = "image-wrapper";
+         let center_now = "m-1";
+ultimateReader.addEventListener("load", () => {
+if(!imagetype.includes(file.type)){
+  warm.classList.toggle("hidden");
+ Colour = "border-red-300"
+check_red(themainWrapper,"no")
+   setTimeout(()=>{
+  warm.classList.toggle("hidden");
+  check_red(themainWrapper,"no");
+   },2000)
+}else if(file.type.startsWith("video/")){
+  //  when this happen 
+  //  -- check if there is any
+  //  -- other file there  already there
+  Colour = "border-blue-400"
+  let video = document.createElement("video");
+      video.setAttribute("controls", "true");    
+      nature_ = "video-wrapper"
+       file_staff = video
+        width_normal  = "w-96"
+        center_now = "m-auto"
+        
+}else{
+  Colour = "border-green-300"
+}
+  let classstaff = ``;
+let  div1 = document.createElement("div");
+  div1.classList.add(
+     nature_,
+    "relative",
+            width_normal,
+            "m-4",
+    "border-solid",
+    "border-4",
+    "rounded-md",
+     Colour,
+    "overflow-hidden"
+  );
+let  div2 = document.createElement("div");
+  div2.classList.add(
+    "preview-cancel",
+    "absolute",
+    "cursor-pointer",
+    "hover:text-red-800",
+    "duration-150",
+    "right-0",
+    "top-0",
+    "text-sm",
+    "p-1",
+    "font-semibold",
+    "bg-black",
+    "text-center",
+    "rounded-bl-md",
+    // for centering
+     center_now
+  );
+  div2.innerText = "X";
+
+
+   
+div2.addEventListener("click", () => {
+    let Xparent = div1.parentNode;
+    Xparent.removeChild(div1)                /// remove the element
+    check_red(themainWrapper,"yes")
+  });   
+
+  file_staff.classList.add("image-container", "h-auto", "w-full");
+  file_staff.src = ultimateReader.result;
+  div1.appendChild(file_staff);
+  div1.appendChild(div2);
+  themainWrapper.appendChild(div1);
+});
+//  check_normal(themainWrapper);
+ultimateReader.readAsDataURL(file);
+}
+}
+inputPreview.addEventListener("change",handleFileUp)
+  
+
+
+
+
+
+    //   for the appending of the element to the form body thing
+     
+         sendbtn.addEventListener("click",()=>{
+     let text_area = document.getElementById("text_area");
+      let proto_input = document.getElementById("proto_input");
+            //  getting the vlaue inner
+    let inner_value = text_area.innerHTML;
+     
+    //   here we are going to be taking it into the syste
+ let tag_array = document.getElementById("tag_array")     
+  tag_array.value = array_selected_tags
+
+     
+    proto_input.value = inner_value;       
+   })
+
+
+
+//  here is the function for finding the domain name
+function find_Domain(url){
+ let Now_Url = new URL(url);
+ let domain_name = Now_Url.hostname.split('.')[0]
+  return domain_name
+}
+
+
+
+
+let file_preview_ = document.querySelector(".file_preview_");
+//  here is where the file is going to be previewed 
+function  deal_live_preview(){
+  //  here is for the ghost 
+  let Colour = "border-green-300"
+   let files_all = this.files
+
+for (let index = 0; index < files_all.length; index++) {
+let element = files_all[index];
+//  here is taking one of the elemnt at a time
+let prototype_file_reader = new FileReader();
+
+prototype_file_reader.addEventListener("load",()=>{
+//   here is at the section of the load
+if(filetype.includes(file.type)){
+  warm.classList.toggle("hidden");
+ Colour = "border-red-300"
+check_red(file_preview_,"no")
+   setTimeout(()=>{
+  warm.classList.toggle("hidden");
+  check_red(file_preview_,"no");
+   },2000)
+}else{
+  Colour = "border-green-300"
+}
+
+
+
+div1.classList.add(
+    "image-wrapper",
+    "relative",
+            "w-24",
+            "m-4",
+    "border-solid",
+    "border-4",
+    "rounded-md",
+     Colour,
+    "overflow-hidden"
+  );
+let  div2 = document.createElement("div");
+  div2.classList.add(
+    "preview-cancel",
+    "absolute",
+    "cursor-pointer",
+    "hover:text-red-800",
+    "duration-150",
+    "right-0",
+    "top-0",
+    "text-sm",
+    "p-1",
+    "font-semibold",
+    "bg-black",
+    "text-center",
+    "rounded-bl-md"
+  );
+  div2.innerText = "X";
+
+  
+  div2.addEventListener("click", () => {
+    let Xparent = div1.parentNode;
+    Xparent.removeChild(div1)                /// remove the element
+    check_red(file_preview_,"yes")
+  });
+
+
+  // getting one the src of each of the lement
+   let atag_now  = document.createElement("a")
+    // addition of certain style
+     atag_now.classList.add('border-1',"border-solid",Colour,"underline");
+    atag_now.href =  prototype_file_reader.result
+   atag_now.innerText = element.name;
+           
+    //   appening it to the element here it is breview 
+   
+    div1.appendChild(atag_now)
+    div1.appendChild(div2);
+    file_preview_.appendChild(div1);
+})
+ prototype_file_reader.readAsDataURL(element)
+
+}
+   }
+
+   //  here is for when there is a change in the nature of the fils system
+let prototype_files_inputfile  = document.getElementById("prototype_files");
+prototype_files_inputfile.addEventListener("change",deal_live_preview)
+   
+
+  
+
+     </script>
+

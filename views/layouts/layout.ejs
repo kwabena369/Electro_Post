@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fearless</title> 
+
+  <link rel="stylesheet" href="output.css">
+  <link rel="stylesheet" href="/css/all.css">
+   <!--  for the socket thing  -->
+<script  src="socket.io-client.js"></script>
+ </head>
+<body 
+ class="bg-gray-100">
+<!--  for the header -->
+
+<%- include('../Hope_nugget/loading.ejs') %>
+  
+ 
+<div class="
+mega
+ grid-content
+ h-full2
+ grid
+ "
+  style="grid-template-rows:  auto 1fr  80px;
+    grid-template-columns: 100px minmax(400px,900px) 2fr;">
+   <%- include('../Electro-Post/header.ejs') %>
+
+    <% if (typeof logIn_SignIn !== null && typeof logIn_SignIn !== 'undefined') { %>
+      <% if (logIn_SignIn !== false) { %>
+  
+
+    <% if (typeof  setting !== null &&  typeof setting !== "undefined") { %>
+   <%- include('../Hope_nugget/setting_link.ejs') %>
+      
+    <% }else{ %>
+   <%- include('../Hope_nugget/Home_page.ejs') %>
+      <%  } %>
+ 
+           
+      <% } %>
+    <% } %>
+
+  <div
+class="
+ mt-2
+flex
+flex-col
+ row-span-full
+ bg-none"
+ style="grid-area:2/2 /auto/3">
+  
+<%- body%>
+
+  </div>
+   
+<%- include('../Hope_nugget/footer.ejs') %>
+</div>
+</body>
+</html>
+
+
+
+
+ <script>
+// loading.js
+window.addEventListener('DOMContentLoaded', () => {
+  const loadingPage = document.getElementById('loading-page');
+
+  // Show the loading page when the page starts loading
+
+   loadingPage.classList.add("flex","items-center","justify-center");
+    loadingPage.classList.toggle("hidden");
+
+  // Hide the loading page when the page finishes loading
+  window.addEventListener('load', () => {
+    // loadingPage.style.display = 'none';
+     loadingPage.classList.toggle("hidden")
+  });
+});
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

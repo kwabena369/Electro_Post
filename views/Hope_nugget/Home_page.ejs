@@ -1,0 +1,161 @@
+
+ 
+<div class="btn
+w-16
+h-48
+ justify-center
+  flex
+  p-2
+   flex-col
+  bg-red-950
+   text-center
+    text-2xl
+    fixed
+     text-white
+     font-sans
+     top-1/4
+     left-1
+     space-y-2
+     rounded-tr-3xl
+     rounded-br-3xl">       
+      <a href="/prototype/new_X">                                                                                                                                                                                               
+<span id="post_some"
+class="normal_proto_post
+cursor-pointer 
+text-2xl 
+ p-1.5
+ hover:bg-white
+ post_btn
+  rounded-full
+  relative 
+  z-30"
+>
+<!-- <small
+class="absolute w-6 h-6 rounded-full 
+left-0 top-0 p-1
+ text-xs bg-red-600 text-white
+ box-border
+  text-center" >6</small> -->
+
+<i class="fas fa-lightbulb hover:text-black"></i>
+ <!-- here is the samething for the uploading of the file  -->
+</span>
+</a>
+<!-- horizontal dispaly -->
+<a href="/question/new_X">
+<span class="fix it
+z-20
+cursor-pointer 
+text-2xl 
+ p-1.5
+ hover:bg-white
+ post_btn
+  rounded-full
+  relative ">
+
+  <!-- <small
+  class="absolute
+  z-30 w-6 h-6 rounded-full 
+  left-0 top-0 p-1
+   text-xs bg-red-600 text-white
+   box-border
+    text-center" >6</small> -->
+  <i class="fas fa-regular fa-wrench hover:text-black "></i>
+</span>
+</a>
+ <!-- here is for the notification -->
+   <!-- if it is not equal to zero then do not display it -->
+
+
+ <a href="/n/massage">
+<span class="notification
+z-30
+cursor-pointer 
+text-2xl 
+ p-1.5
+hover:bg-white
+ post_btn
+  rounded-full relative" >
+  <% if ( typeof Number_Notification !== 0 ) { %>
+
+<% } %>
+   
+    <i class="fas fa-bell text-white hover:text-black
+    text-4xl"></i>
+  </span>
+    
+  </a> 
+ </div>
+
+
+
+<!-- 
+<script>
+
+ let display_fault_form = false
+         
+       let post_btn = document.querySelectorAll("#post_some");
+      //  corresponding 
+       let normal_proto_post = document.querySelector(".normal_proto_post");
+       let  ask_engineers_btn = document.querySelector(".ask_engineers_btn");
+          //  for the btn 
+     let btn_prototype = document.querySelector(".btn_prototype");
+
+
+      
+
+
+      
+    //  her are some of the optional section 
+     let option1 = document.querySelector(".proto_file");
+       let option2 = document.querySelector(".ProtoypeName")    
+//  for the form 
+ let form_element = document.getElementById("ultimate_form");
+  let p_form = document.querySelector(".upload_new_proto");
+            Array.from(post_btn).forEach(element =>{
+              console.log(element)
+                  //  ultimate decider getting the classs
+          
+          element.addEventListener("click",(event)=>{
+                  let current = event.target.parentNode
+            // for the editing side
+                  
+                    if(current === ask_engineers_btn){
+                       btn_prototype.innerHTML = "Send_Fault"
+
+                         if(option1.classList.contains("hidden")){
+
+                         }else{
+                          option1.classList.toggle("hidden")
+                        option2.classList.toggle("hidden")
+                         }
+                      
+
+
+                         form_element.setAttribute("action","/question/new")
+                  // console.log(form_element);
+                         }else{
+                           if(option1.classList.contains("hidden")){
+                            option1.classList.toggle("hidden")
+                            option2.classList.toggle("hidden")
+                           }else{
+                          
+                           }
+                        
+                         }
+                 
+            console.log(current);
+           p_form.classList.toggle("hidden");  
+           overlay.classList.toggle("hidden");  
+            overlay.addEventListener("click",()=>{
+                     if(p_form.classList.contains("hidden")){}
+                     else{
+                         p_form.classList.toggle("hidden")
+                     }
+             })
+          })
+            })
+      
+      
+      </script> -->
+   

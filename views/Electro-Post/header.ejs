@@ -1,0 +1,405 @@
+<!--  here is for the header  -->
+
+ <header
+    class=" 
+     header
+      flex
+       relative
+    max-w-full
+     w-full
+    text-black
+    items-center
+  
+    justify-between
+      bg-pink-500
+      box-border
+     pr-6
+      col-span-5
+       "
+       
+    
+      
+        > 
+           
+
+       
+
+     <!-- here is the display of the -->
+
+     <div class="three-btn
+        
+     transition-transform duration-300
+        hidden 
+      small:inline p-3
+         "
+      >
+        <div class="line1
+         w-10
+         mt-1
+          bg-black
+          h-1
+          rounded            
+ duration-150
+ease-in-out
+           "></div>
+           <div class="line2
+           w-5
+           mt-1
+            bg-black
+            h-1
+             
+          rounded
+          duration-150
+    ease-in-out
+             "></div>
+             <div class="line3
+             w-10
+             mt-1
+              bg-black
+              h-1
+          rounded
+   duration-150
+    ease-in-out
+          
+
+               "></div>
+        
+     </div>
+
+
+
+   
+   <a href="/" class="
+   text-4xl
+   font-semibold
+    p-2
+    small:text-2xl 
+    
+     
+   ">_101010_</a>
+
+
+  
+
+    <!-- here is for the nav bar -->
+     <nav
+      class="
+        hidden larger:inline p-2
+         transition-transform duration-300
+          
+       ">
+       
+        
+        <div class="classic flex flex-row items-center
+         space-x-3" >
+       
+
+          <!--  here is going to be the optional section on the page  -->
+  
+          <% if (typeof user !== 'undefined' && user !== null ) { %>
+         
+             <label for="prof" class="relative
+               z-40">
+             <img src="
+               <% if (user.userProfile !== "") { %>
+                 userProfile/<%= user.userProfile %>
+               <% } else{%>
+                <%="/Default-Profile.png "%>
+                <% } %>
+             "
+               id="toper"
+              class="
+              inline
+               rounded-s-full
+               -z-40
+                m-3
+                 w-9" alt="">
+                  
+                
+                </label>
+               
+                 <a 
+                 class="text-2xl font-sans text-black "
+                  href="/<%= user.Userhandle %>">
+                  <%= user.Userhandle %>
+                 </a>
+                 
+                 <!-- for the notification  -->
+             
+                 <a href="/setting/u/">
+                  <i class="fas fa-cog 
+                   text-yellow-300 text-3xl"></i>
+                 </a>
+
+                  <!--  for the question making
+                    -->
+                   
+    <% if (typeof  setting !== null &&  typeof setting !== 'undefined') { %>
+    
+
+       <% }else{%>
+        <span class="
+        ask_engineers_btn">
+  
+       <a id="post_some" class="cursor-pointer
+        border-2  border-solid rounded-lg p-2">
+          Ask Engineers
+       </a>
+     </span>
+         <% } %>
+ <!-- here for the seting tog -->
+                     <input id="prof"
+                      type="file"
+                       name="profile-image-form" 
+                       class="Beans  hidden">
+        </div>
+          
+          <% }else{%>
+             
+
+         <span
+          class="flex flex-row items-center text-2xl justify-between">
+
+
+        <a href="/user/signUp" class="
+        text-white
+        bg-black
+         rounded-lg 
+         p-2
+            text-2xl
+         font-normal 
+         ml-3
+         "> SignUp</a>
+
+       
+
+        
+         <a href="/user/logIn" class="
+         text-white
+         bg-black
+          rounded-lg 
+          p-2
+             text-2xl
+          font-normal 
+          ml-3
+          ">LogIn</a>
+ 
+         </span>
+
+      <!-- here are the key thing in the section of the task bar
+        home 
+       contact about as
+       the login 
+       sing up -->
+       <% } %>
+        
+     </nav>
+ </header>
+  
+  <div class="menu
+  hidden 
+      fixed
+       larger:hidden
+       top-24
+      left-0
+       w-1/3
+       h-80
+        bg-transparent
+         backdrop-blur-0
+        duration-200
+      text-white 
+      text-2xl 
+        ease-in-out
+     z-50
+    ">
+ <% if (typeof user !== 'undefined' && user !== null ) { %>
+     
+     
+     <div class="
+      flex
+       flex-col
+       m-4
+ items-center
+       ">
+        <label for="prof" 
+         class="
+         mb-3
+           block
+           cursor-pointer">
+        <img src="<% if (user.userProfile !== "") { %>
+           userProfile/<%=user.userProfile %>
+        <% } else{%>
+         <%="/Default-Profile.png "%>
+         <% } %>"
+ 
+
+        
+         id="Current-Prof"
+          class="
+           rounded-full 
+          w-full
+             "
+
+                                        
+   
+             alt="">
+               
+            </label>
+              <input id="prof" type="file" name="profile-image-form" class="Beans  hidden">
+   <span
+   class="text-2xl font-sans text-black
+   text-center bg-green-400 rounded-lg p-1  ">      <%= user.Userhandle %></span>
+
+      <input
+       class="user-id hidden" 
+          value="<%=user._id%>" 
+        >
+              
+ </input>
+     </div>
+
+     <!-- hidden valeu -->
+  
+      <!-- for the link -->
+      <div class="flex flex-col space-y-2
+          m-6
+           text-sm
+            small:text-xs
+            text-white">
+        <a  href="/setting/u" class="bg-pink-500 p-1 rounded
+               hover:bg-slate-900">Setting</a>
+
+
+               <a href="/" class="bg-pink-500 p-1 rounded
+               hover:bg-slate-900">
+                 Home 
+              </a>
+
+               <a href="/user/logout" class="bg-pink-500 p-1 rounded
+               hover:bg-slate-900">Log_Out</a>
+      </div>
+      <% }else{%>               
+
+        <div class="flex flex-col space-y-2
+        m-6">
+        <a href="#" class=" p-1 rounded
+        hover:bg-slate-900"> Projects</a>     
+         
+         <a href="/" class=" p-1 rounded
+               hover:bg-slate-900">
+                Home
+              </a>  
+              
+               <a href="/user/signUp" class=" p-1 rounded
+               hover:bg-slate-900">Sign-Up</a>
+              
+               <a href="/user/logIn" class=" p-1 rounded
+               hover:bg-slate-900">Log In</a>
+           
+               <a href="#" class=" p-1 rounded
+               hover:bg-slate-900">About Us</a>
+
+
+    </div>
+         
+
+         <% } %>
+
+  </div>
+
+  
+  <%- include('overlay.ejs') %>
+
+      <script>
+        // for the animation of the line of the btn 
+ const line1  =document.querySelector(".line1")
+ const line2  =document.querySelector(".line2")
+ const line3  =document.querySelector(".line3")
+        //   for the menu 
+          let menuthing = document.querySelector(".menu");
+          // for the  overlay thing
+           let overlay  =  document.querySelector(".overlay");
+            // here is for the btn 
+             let btn  = document.querySelector(".three-btn ");
+    
+    
+    
+             btn.addEventListener("click",()=>{
+               
+                 line1.classList.add("-translate-y-2","rotate-45")
+                   line2.classList.add("hidden")
+                     line3.classList.add("-translate-y-4","-rotate-45")
+
+               
+          menuthing.classList.toggle('hidden');
+          overlay.classList.toggle('hidden');
+  menuthing.classList.add('transform', 'translate-x-full');
+  setTimeout(() => {
+    menuthing.classList.remove('translate-x-full');
+    menuthing.classList.add('translate-x-0');
+  }, 100);
+   console.log("Am been called")
+         }) 
+
+         
+         
+ document.addEventListener("click",(event)=>{
+     const targetName = event.target
+        if(targetName === overlay){
+          line1.classList.remove("-translate-y-2","rotate-45")  //for other case
+           line2.classList.toggle("hidden") // for other case 
+          line3.classList.remove("-translate-y-4","-rotate-45") // for other case
+ 
+           if(!menuthing.classList.contains("hidden")){
+            menuthing.classList.toggle('hidden');
+           }
+ 
+            overlay.classList.toggle('hidden');
+         }
+
+ })
+          
+          
+          //  here is for the uploading of  the image file 
+           const inputProfile  =  document.querySelector(".Beans");
+            const currentProfile = document.getElementById("Current-Prof")
+            const currentProfile2 = document.getElementById("toper")
+            const useridNow = document.querySelector(".user-id");
+            
+      
+             if(useridNow !== null){
+            const userNow2 = useridNow.getAttribute("value");
+               console.log(userNow2)
+               
+            
+            inputProfile.addEventListener("input",()=>{
+              const ProfData = inputProfile.files[0]
+
+                 const formData = new FormData();
+  inputProfile.addEventListener("change",()=>{
+    console.log("it is chamge")
+//  here we are doing the 
+const reader = new FileReader();
+   reader.addEventListener("load",()=>{
+    console.log("it is ki")
+      currentProfile.src = reader.result
+      currentProfile2.src = reader.result
+       })
+reader.readAsDataURL(ProfData);
+  })
+
+
+                  formData.append("user-Profile",ProfData);
+                  //  sending it 
+              fetch(`/userProfile/${userNow2}`,{
+                 method  : 'POST',
+                 body :  formData
+              })
+            })
+
+          }
+
+        
+
+     
+      </script>

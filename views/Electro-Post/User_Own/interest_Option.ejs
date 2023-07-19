@@ -1,0 +1,228 @@
+
+<div class="w-fit text-center m-auto 
+border-b-3 border-b-sky-400 border-solid
+mb-3
+p-4
+bg-green-500
+rounded-lg
+text-white  text-3xl">
+ Your _ Interest
+ </div>
+
+<div class=" 
+wrapper_interest 
+mr-5
+flex
+flexo-col
+gap-3
+ 
+bg-blue-300
+ larger:h-40
+ p-3
+  rounded-lg
+ min-w-fit h-fit border-1 ">
+
+<% if (typeof already !== null && typeof already !== 'undefined') { %>
+        <div class="option2 flex 
+          larger:h-40
+          h-fit
+           gap-3
+          flex-wrap
+         flex-col  p-2">
+        <% already.forEach(element => { %>
+          <div class="single_interest
+   bg-green-400 
+   w-fit flex flex-row">
+          <!-- for the image reperesenting it  -->
+    <span>
+       <img src="/zone_pic/<%=element%>.png" 
+       class="w-12 h-12 rounded-full" alt="">
+    </span>
+
+  <span 
+  class="cursor-pointer
+    rounded-md 
+    option_Now
+    w-fit
+    p-2"
+  id="option_Now">
+    <%= element %>
+   </span>
+
+       </div>
+
+<% }) %> 
+<!--  at there the other guys 
+      are going to come here 
+-->
+ </div> 
+    
+      
+     <% }else{ %>
+ 
+      <div class="option2 flex 
+      larger:h-40
+      h-fit
+       gap-3
+        bg-red-400
+      flex-wrap
+     flex-col  p-2">
+
+
+</div>
+      <% } %>
+
+
+
+    </div>
+
+     <div id="savebtn" class=" bg-blue-400 
+     w-fit
+      cursor-pointer
+      m-auto
+   p-1 rounded-lg save">
+  save_interest
+     </div>
+     
+        
+    
+ <script>
+    
+
+     
+     
+     
+let savebtn  = document.getElementById("savebtn");
+     //  for parent
+     let parent_clicker2 = document.querySelector(".option2")
+
+  
+
+
+    
+     //    for event delegation 
+      let array_interes = [];
+      let the_one
+      //  parent_clicker2.addEventListener("click",(event)=>{
+        
+      //      if(event.target.tagName === "SPAN"){
+      //       the_one  = event.target.innerText.replace(/\s/g,"");
+      //       //   check if ti is of the border of white
+      //   if(event.target.classList.contains("border-white")){
+      //             //  if so then remove if form the array 
+      //                let index_now = array_interes.indexOf(the_one)
+      //         array_interes.splice(index_now,1)
+      //         //  set border to green 
+      //         event.target.classList.remove("border-white","p-2")
+      //         event.target.classList.add("border-4","border-solid",
+      //         "border-green","rounde-lg","p-3")
+
+      //                }else{
+      //          //   styling the elemey
+      // event.target.classList.add("border-4","border-solid","border-white","rounde-lg","p-3")
+      // array_interes.push(the_one);
+      //                 }
+      //      }
+
+
+      //  })
+
+
+
+
+// creating and appenginf element which are not in the ysmtren
+
+let ans = '<%=already%>';
+   let  originalONe = [
+     "Aerospace",
+     "Electrical_En",
+     "Computer_Engineering",
+     "Rasperypi",
+     "Marineenginnerring",
+     "Thinkerkit",
+     "Arduino"
+    ]
+// where  there is what the user is not javing 
+ let not_having = originalONe.filter(element =>{
+     return !ans.includes(element)
+ })
+  // when ever there is an appening of the 
+  //  lement we od have to an the image
+  not_having.forEach(element => {
+     let newelemnet = document.createElement("span"); 
+        let img_thing = document.createElement("span");
+         let img_real = document.createElement("img");
+           
+          // the main thing 
+           let  div_main_wrapper = document.createElement("div")
+         div_main_wrapper.classList
+         .add("w-fit","flex","flex-row","bg-red-400","single_interest")
+
+        //  for one image instance 
+         img_real.classList.add("w-12","h-12","rounded-full");
+         img_real.src =`/zone_pic/${element}.png` 
+
+             img_thing.appendChild(img_real);
+           newelemnet.classList.add(
+        "cursor-pointer",
+        "rounded-md",
+          "w-fit",
+           "p-2",
+           "option_Now"
+          )
+       newelemnet.innerText = element
+        
+       div_main_wrapper.appendChild(newelemnet);
+       div_main_wrapper.appendChild(img_thing);
+        parent_clicker2.appendChild(div_main_wrapper);
+  }
+   
+   );
+ 
+ 
+    
+let single_interest  = document.querySelectorAll(".single_interest")     
+      
+      //  attaching of the event to it
+      single_interest.forEach(element=>{
+        element.addEventListener("click",()=>{
+        console.log("someone hit it")
+          if(element.classList.contains("bg-green-400")){
+            element.classList.add("bg-red-400");
+            element.classList.remove("bg-green-400");
+          }else{
+           element.classList.remove("bg-red-400");
+            element.classList.add("bg-green-400");
+          }
+        })
+      })
+          
+     //  so when the save btn is click
+      savebtn.addEventListener("click",()=>{
+        let real_deal_staff = [];
+       //  inside the parent  thing we are going to be taking all those 
+       //  with the bg-green-400
+           let _them_with_red_bg = parent_clicker2.querySelectorAll(".bg-red-400");
+           let _them_with_green_bg = parent_clicker2.querySelectorAll(".bg-green-400");
+      
+           //  since the greens are the once we are going 
+           //   to be using we do this
+             
+            _them_with_green_bg.forEach(element=>{
+               let what_need = element.querySelector(".option_Now").innerText
+                 real_deal_staff.push(what_need);
+               })
+       
+                
+       
+               fetch(`/setting/u/interest_value?interests=${real_deal_staff}`)
+           .then(res => { if(res.redirected){
+                  window.location.href = res.url
+           } } 
+           
+           )
+                
+     
+           })
+     
+ </script>

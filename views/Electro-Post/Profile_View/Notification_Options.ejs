@@ -1,0 +1,129 @@
+<div class="wrapper bg-white">
+     <div class="main border-2 
+    border-solid
+     border-pink-400 
+     rounded-lg
+     flex flex-col space-y-2
+      p-4
+       text-2xl
+       font-sans
+      ">
+         <span class=" bg-red-500 p-2 underline rounded-md" >
+        Choose {Yes or No } on wheather to get email Alert in relation to each field
+         </span>   
+          
+          <div class="optionhere">
+              
+             <!-- for fault  of interest -->
+             <% var isYes %>
+             <% var isYes_com %>
+
+               <% if (typeof user !== null && typeof user !== 'undefined') { %>
+               
+  
+              <span>
+                <div class="onehere flex flex-col space-y-2">
+
+                  Receiver fault of interest alert <br>
+                  <span class="bg-blue-300  w-fit m-auto rounded-lg p-3">
+                   <input type="radio" name="fault_noti_radio" 
+                  <% if (user.getEmail_falut === 'Yes') { %>
+                   <%= "checked" %>
+                  <% } %>
+                   value="Yes" id="Yes">
+                    <label for="Yes">Yes</label>
+                   <input type="radio" name="fault_noti_radio"
+                   <% if (user.getEmail_falut === 'No') { %>
+                    <%= "checked" %>
+                   <% } %>
+                    value="No" id="No">
+                   <label for="No">No</label>
+                  </span>
+                    <br>
+                </div>
+
+              </span>
+              <!-- for the comment -->
+              <span>
+                <div class="onehere flex flex-col space-y-2 
+                border-b-2 border-red-400 p-3 border-solid">
+                Receiver comment on my Posts
+                <span class="bg-blue-300 w-fit m-auto rounded-lg p-3">
+                 <input type="radio" name="comment_noti_radio" 
+                 <% if (user.getEmail_comment === 'Yes') { %>
+                  <%= "checked" %>
+                 <% } %>
+                  
+                 id="Yes" value="Yes">
+                  <label for="Yes">Yes</label>
+                 <input type="radio" name="comment_noti_radio" 
+                 <% if (user.getEmail_comment === 'No') { %>
+                  <%= "checked" %>
+                 <% } %> id="No" value="No">
+                 <label for="No">No</label>
+                </span>
+            </span>
+          </div>
+            <% } %>  
+          </div>
+           
+           <span class="bg-blue-400
+            w-fit
+             
+            m-auto
+             p-3 rounded-lg cursor-pointer save_noti_settings">
+             Save 
+           </span>
+     </div> 
+    </div>
+
+
+    <script>
+      //  here is after the user
+        // click one the save btn 
+    let save_noti_settings  =  document.querySelector(".save_noti_settings");
+   
+      //  selecting all the element with pacticular name 
+        let all_fault_option = document.getElementsByName("fault_noti_radio");
+        //   for the comment noti_setting
+        let comment_noti_radio = document.getElementsByName("comment_noti_radio");
+        let setting_value = {
+          fault_noti_radio :'',
+          comment_noti_radio:''
+        }  
+     save_noti_settings.addEventListener("click",()=>{
+      
+      all_fault_option.forEach(element=>{
+        //  check here
+         if(element.checked){
+           setting_value.fault_noti_radio =element.value
+         }
+      })
+     
+      comment_noti_radio.forEach(element=>{
+        //  check here
+         if(element.checked){
+              setting_value.comment_noti_radio=element.value
+         }
+      })
+     
+    
+      
+    
+     //  the one that is check we are going to be 
+          //  taking the value there and then send it to the back end
+          fetch("/setting/u/Noti_setting",{
+              headers : {'Content-Type':'application/json'},
+               body : JSON.stringify(setting_value),
+               method :"POST"
+           }).then(
+             res =>{
+                if(res.redirected){
+                   window.location.href = res.url
+                }
+             }
+           )
+
+    })
+
+    </script>

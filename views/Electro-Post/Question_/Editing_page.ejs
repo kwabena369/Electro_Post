@@ -1,0 +1,717 @@
+<!-- here is the page ofr the sending of the files it is pian -->
+    
+
+ <!--here  is for the deleing propt  -->
+
+ <div class="w-fit text-center m-auto 
+ border-b-3 border-b-sky-400 border-solid
+ mb-3
+ p-4
+ bg-green-500
+ rounded-lg
+ text-white  text-3xl">
+  Editing of the Fault 
+ </div>
+ <form action="/setting/u/fault_editing/" method="post" enctype="multipart/form-data">
+  <div class="wrapper_place_for_the_uplaoding border-2
+     bg-white
+     p-1
+     border-blue-500 border-solid rounded-lg flex flex-row space-x-2 w-full"
+      >
+       <input type="text" value="<%=Proto.id%>" class="hidden" name="Proto_id">
+ 
+       
+ <!-- here are the hidden input filed  -->
+ <input type="file" name="file_1" id="file_1" class="hidden">
+ <input type="file" name="file_2" id="file_2" class="hidden">
+ <input type="file" name="file_3" id="file_3" class="hidden">
+ <div class="file_uploading_section w-fit p-3
+ flex flex-col space-y-8 border-r-2
+ justify-between items-stretch
+ border-solid border-pink-400 " >
+ <div class="border-2 
+ items-center
+ justify-center
+ flex flex-col space-y-0 
+ text-center p-2
+ w-24 h-fit rounded-lg border-solid border-gray-500 ">  
+  <div class="file_1_preview w-full m-2 h-21 flex flex-wrap items-center justify-center">
+  
+    <!--  outputing one instance of thing there -->
+   
+ <div
+ 
+ class="one_instance
+ w-fit
+ relative
+ border-2
+ border-solid
+ border-blue-400
+ rounded-lg
+ p-0.5
+  jusitfy-center
+ h-full
+ "
+ >
+ <%let beans_One = content[0].name %>
+ <span 
+  id="<%=beans_One%>"
+    class="cancle_btn bg-black
+    rounded-md
+    text-white
+    p-0.5
+    absolute
+    right-0
+    top-1
+    fas fa-times"
+    >
+     
+   </span>
+   <img src="/<%=beans_One%>/q" 
+   class="image-container h-full w-full" alt="">
+ </div>        
+       
+      
+       
+   
+     
+     
+  </div>
+ 
+  <label for="file_1" class="w-full h-1/2  
+   p-3
+   flex 
+    flex-wrap
+    text-center
+    text-white
+    rounded-t-lg bg-blue-600">
+     <span class="text-center w-full">
+       First
+     </span>
+   </label>
+ </div> 
+ 
+  <div class="border-2 
+ items-center
+ justify-center
+ flex flex-col space-y-0 
+ text-center p-2
+ w-24 h-fit rounded-lg border-solid border-gray-500 ">  
+  <div class="file_2_preview 
+  w-full m-2 h-21 flex flex-wrap items-center justify-center">
+  <!-- content    -->
+    <!-- pre serving the content of the thing there  -->
+    <% let length_content_second_there = content[1]%>
+    <% if (length_content_second_there !== undefined) { %>
+    <div
+   
+    class="one_instance
+    w-fit
+    relative
+    border-2
+    border-solid
+    border-blue-400
+    rounded-lg
+    p-0.5
+     jusitfy-center
+    h-full
+    " 
+     >
+     <%let beans_two = content[1].name %> 
+      <span 
+      id="<%=beans_two%>"
+      class="cancle_btn bg-black
+       rounded-md
+       text-white
+       p-0.5
+       absolute
+       right-0
+       top-1
+       fas fa-times"
+       >
+        
+      </span>
+      <img src="/<%=beans_two%>/q" 
+      class="image-container h-full w-full" alt="">
+    </div>        
+       <% } %>
+     
+    </div>
+ 
+  <label for="file_2" class="w-full h-1/2  
+   p-3
+   flex 
+    flex-wrap
+    text-center
+    text-white
+    rounded-t-lg bg-blue-600">
+     <span class="text-center w-full">
+       Second
+     </span>
+   </label>
+ </div> 
+ 
+ 
+       <div class="border-2 
+ items-center
+ justify-center
+ flex flex-col space-y-0 
+ text-center p-2
+ w-24 h-fit rounded-lg border-solid border-gray-500 ">  
+  <div class="file_3_preview 
+  w-full m-2 h-21 flex flex-wrap items-center justify-center">
+   
+   <!-- checking the lenght of content before -->
+    <% let length_content_third_there = content[2]%>
+     
+     <% if (length_content_third_there !== undefined) { %>
+   <div
+   
+  class="one_instance
+  w-fit
+  relative
+  border-2
+  border-solid
+  border-blue-400
+  rounded-lg
+  p-0.5
+   jusitfy-center
+     h-full"
+     >
+  <%let beans_third = content[2].name%> 
+  <span 
+  id="<%=beans_third%>"
+  class="cancle_btn bg-black
+   rounded-md
+   text-white
+   p-0.5
+   absolute
+   right-0
+   top-1
+   fas fa-times"
+   >
+      
+    </span>
+    <img src="/<%=beans_third%>/q" 
+    class="image-container h-full w-full" alt="">
+  </div>        
+  <% } %> 
+        
+   
+  </div>
+ 
+  <label for="file_3" class="w-full h-1/2  
+   p-3
+   flex 
+    flex-wrap
+    text-center
+    text-white
+    rounded-t-lg bg-blue-600">
+     <span class="text-center w-full">
+       Third
+     </span>
+   </label>
+ </div> 
+ 
+       </div>
+ 
+        
+          
+       
+       <div class="protoname_discription_file_other flex flex-col
+       w-full
+         justify-between items-stretch">
+       
+       
+ 
+           <div class="w-fit text-center m-auto 
+           border-b-3 border-b-sky-400 border-solid
+           mb-1
+           p-0.5
+         text-black
+           rounded-lg
+            text-xl">
+               Description Downhere
+          </div>
+                   <div
+              class="
+               w-full
+                h-56
+                p-0
+                 rounded
+                 outline-none
+                  border-2
+                   border-orange-50
+                 bg-gray-100
+              overflow-x-clip
+               overflow-y-auto
+                resize-none
+                placeholder-black
+                 text-black                  "
+               
+                  contenteditable
+              
+               
+                 
+                id="text_area_pro"><%-Proto.discribe_falut%></div>
+           <input type="text" class="hidden" 
+              name="descriptionPrototype" id="proto_input_pro">
+ 
+
+              <div class="add-them 
+              flex items-center ">
+              <!-- the btn -->
+              <span style="border-radius: 50%;"
+              id="option_add"
+              class="
+               cursor-pointer
+               p-2
+               text-white
+                text-2xl
+                 bg-green-700
+                ">
+                <i class="fas fa-plus">
+                   
+                </i>
+                            </span>
+              
+              <!-- for thing to desplay -->
+            
+            
+               
+            
+              <div class="things
+                   hidden w-0 
+                   duration-500 
+                  transform
+                   translate-x-0
+                   translate-y-0
+                    "
+                   style="animation: moveOutAnimation 1s forwards;
+                    ">
+  
+  <!-- the link input ifled  -->
+  <div 
+  id="link_parent"
+   class="input-section
+ parent_wrapper_link_add
+   w-full
+   p-2
+    hidden
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text"  id="input_section_"
+     class="
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         placeholder-black
+         "
+      placeholder="pasted link here" >
+       
+        <span 
+          id="Add-link"
+         class="show-hide
+        absolute
+         justify-center
+        top-1/4
+         right-2
+          bg-slate-950
+           rounded
+            p-1
+             cursor-pointer
+             text-white
+              mb-3
+         ">
+           Add
+        </span>
+        
+   </div>
+
+ 
+                 
+                    <i id="abb_link_btn" class="fas fa-paperclip
+                    bold p-1 m-1 rounded-md
+                    bg-yellow-400
+                    "></i>
+
+                    <span class="bold p-1 m-1 rounded-md bg-yellow-400">Bold</span>
+                  <span  class="bold p-1 m-1 rounded-md bg-yellow-400">Bold</span>
+                </div>
+                 
+             
+             </div>
+ 
+              <%- include('../../Hope_nugget/tag_them_now.ejs') %>
+ <!-- here is the hidden input form for the tags -->
+           <input type="text" 
+            name="tag_array" id="tag_array">
+          
+            
+            <div class="proto_file">
+               <div class="file_preview_ w-3/4 border-2
+                border-solid
+                 border-gray-500 
+                 rounded-md">
+               </div>
+                <input
+                 type="file"
+                 name="file_man"
+                  id="prototype_files" class="hidden" >
+                <label for="prototype_files">
+                    Optional Upload of file
+                </label> 
+             </div>
+ 
+          </div>
+    </div>
+     
+    <!--here is the hidden input fomr for the sending of the 
+    filename whihc werer deleted in the system  -->
+     
+     <input type="text" id="file_deleted_box" name="_deleted_file_in_there" class="hidden">
+ <div class="w-fit text-center m-auto 
+ border-b-3 border-b-sky-400 border-solid
+ mt-3
+ p-2
+ bg-black
+ rounded-lg
+ text-white  text-2xl">
+ <button id="saving_editing_btn" type="submit">
+   Save Editing
+  </button>
+ </div>
+ 
+    
+ </form>
+ 
+ <!-- here is the dudmmy thing of sending  -->
+ <script>
+ 
+ 
+ let input_one = document.getElementById("file_1")
+  let file_1_preview = document.querySelector(".file_1_preview")
+     let input_two = document.getElementById("file_2")
+   let file_2_preview = document.querySelector(".file_2_preview")
+    let input_three = document.getElementById("file_3")
+ let file_3_preview = document.querySelector(".file_3_preview")
+ 
+ 
+   //  since here is the editing page when the user
+ //  comes here for the first time -- the phone 
+ // are going to e pre filled there
+   
+  let all_the_cancel_btn = document.querySelectorAll(".cancle_btn");
+  let pre_pp_deleted_Onece =[]
+ 
+  all_the_cancel_btn.forEach(element=>{
+   element.addEventListener("click",(event)=>{
+     //  here each time there is a click on the cancel bnt we  going tobe setting the value
+     //  of the inpit filed
+ //  finding the id of the parent element
+  let image_name  = event.target.id 
+   // here we are going to be picking the specificthing which we do want from the id
+    let real_deal_here_now = image_name.split("-")[1]
+   if(real_deal_here_now === "file_1"){
+     //   then the removal of the first element of the first previwing thing 
+      file_1_preview.removeChild(event.target.parentNode);
+   }
+    
+   if(real_deal_here_now === "file_2"){
+     //   then the removal of the first element of the first previwing thing 
+      file_2_preview.removeChild(event.target.parentNode);
+   }
+ 
+   if(real_deal_here_now === "file_3"){
+     //   then the removal of the first element of the first previwing thing 
+      file_3_preview.removeChild(event.target.parentNode);
+   }
+    
+   pre_pp_deleted_Onece.push(image_name);
+   document.getElementById("file_deleted_box").value  = pre_pp_deleted_Onece
+    
+    
+  })
+ 
+ 
+ 
+  })
+  
+   
+ 
+  
+  
+  
+ let saving_editing_btn = document.getElementById("saving_editing_btn");
+ 
+ saving_editing_btn.addEventListener("click",()=>{
+    let text_area_pro = document.getElementById("text_area_pro");
+     let proto_input_pro = document.getElementById("proto_input_pro");
+           //  getting the vlaue inner
+   let inner_value = text_area_pro.innerText;
+    
+   //   here we are going to be taking it into the syste
+ let tag_array = document.getElementById("tag_array")     
+ tag_array.value = array_selected_tags
+ proto_input_pro.value = inner_value;       
+  })
+ 
+ //   here is the meag handling of the previewing display of the file when the they  
+ //  are selected
+ 
+ // --- all the input-- element -- and thier various zone of this display
+ 
+ 
+ 
+ 
+ //  for the each of the input preview section 
+ input_one.addEventListener("input", () => {
+ let div_One = document.createElement("div");
+ div_One.classList.add(
+   "w-fit",
+   "relative",
+   "border-2",
+   "border-solid",
+   "border-blue-400",
+   "rounded-lg",
+   "p-0.5",
+    "flex",
+    "flex-wrap",
+    "items-center",
+    "jusitfy-center",
+   "h-full",
+   "hidden"
+ );
+ 
+ 
+ let can_btn = document.createElement("span");
+ can_btn.classList.add(
+   "bg-black",
+   "rounded-md",
+   "text-white",
+   "p-0.5",
+   "absolute",
+   "right-0",
+   "top-1",
+   "fas",
+   "fa-times"
+ );
+ let file_staff = document.createElement("img");
+ file_staff.classList.add("image-container", "h-full", "w-full");
+ div_One.classList.toggle("hidden");
+ can_btn.addEventListener("click", (event) => {
+   let the_one = event.target.parentNode;
+   file_1_preview.removeChild(the_one);
+   input_one.value = null;
+ });
+ // Remove the previous image
+ while (file_1_preview.firstChild) {
+   file_1_preview.firstChild.remove();
+ }
+ 
+ let input_file_one = input_one.files[0];
+ let reader = new FileReader();
+ reader.addEventListener("load", () => {
+   file_staff.src = reader.result;
+   div_One.appendChild(file_staff);
+   div_One.appendChild(can_btn);
+   file_1_preview.appendChild(div_One);
+ });
+ reader.readAsDataURL(input_file_one);
+ });
+ 
+ input_two.addEventListener("input", () => {
+ let div_One = document.createElement("div");
+ div_One.classList.add(
+   "w-fit",
+   "relative",
+   "border-2",
+   "border-solid",
+   "border-blue-400",
+    "rounded-lg",
+   "p-0.5",
+   "hidden"
+ );
+ 
+ let can_btn = document.createElement("span");
+ can_btn.classList.add(
+   "bg-black",
+   "rounded-md",
+   "text-white",
+   "p-0.5",
+   "absolute",
+   "right-0",
+   "top-1",
+   "fas",
+   "fa-times"
+ );
+ 
+ let file_staff = document.createElement("img");
+ file_staff.classList.add("image-container", "h-auto", "w-full");
+ 
+ div_One.classList.toggle("hidden");
+ 
+ can_btn.addEventListener("click", (event) => {
+   let the_one = event.target.parentNode;
+   file_2_preview.removeChild(the_one);
+   input_two.value = null;
+ });
+ 
+ // Remove the previous image
+ while (file_2_preview.firstChild) {
+   file_2_preview.firstChild.remove();
+ }
+ 
+ let input_file_two = input_two.files[0];
+ let reader = new FileReader();
+ reader.addEventListener("load", () => {
+   file_staff.src = reader.result;
+   div_One.appendChild(file_staff);
+   div_One.appendChild(can_btn);
+   file_2_preview.appendChild(div_One);
+ });
+ reader.readAsDataURL(input_file_two);
+ });
+ 
+ input_three.addEventListener("input", () => {
+ let div_One = document.createElement("div");
+ div_One.classList.add(
+   "w-fit",
+   "relative",
+   "border-2",
+   "border-solid",
+   "border-blue-400",
+   "rounded-lg",
+   "p-0.5",
+       "hidden"
+ );
+ 
+ let can_btn = document.createElement("span");
+ can_btn.classList.add(
+   "bg-black",
+   "rounded-md",
+   "text-white",
+   "p-0.5",
+   "absolute",
+   "right-0",
+   "top-1",
+   "fas",
+   "fa-times"
+ );
+ 
+ let file_staff = document.createElement("img");
+ file_staff.classList.add("image-container", "h-auto", "w-full");
+ 
+ div_One.classList.toggle("hidden");
+ 
+ can_btn.addEventListener("click", (event) => {
+   let the_one = event.target.parentNode;
+   file_3_preview.removeChild(the_one);
+   input_two.value = null;
+ });
+ 
+ // Remove the previous image
+ while (file_3_preview.firstChild) {
+   file_3_preview.firstChild.remove();
+ }
+ 
+ let input_file_three = input_three.files[0];
+ let reader = new FileReader();
+ reader.addEventListener("load", () => {
+   file_staff.src = reader.result;
+   div_One.appendChild(file_staff);
+   div_One.appendChild(can_btn);
+   file_3_preview.appendChild(div_One);
+ });
+ reader.readAsDataURL(input_file_three);
+ });
+ 
+ function find_Domain(url){
+ let Now_Url = new URL(url);
+ let domain_name = Now_Url.hostname.split('.')[0]
+  return domain_name
+}
+
+
+
+ 
+// adittion of the option 
+let add_option  = document.getElementById("option_add");
+let thing  = document.querySelector(".things");
+    
+    // add_btn
+
+add_option.addEventListener("click",()=>{
+  // here we are going to be displaying the thing 
+  thing.classList.add("w-auto","translate-x-10","translate-x-10")
+     thing.classList.toggle("hidden")
+   
+})
+
+// the link_parent_Space
+//  for the link_btn 
+ let likn_btn = document.getElementById("abb_link_btn")
+  // for the input field
+  let input_field_link = document.getElementById("input_section_");
+    // for the add
+
+     let add_btn = document.getElementById("Add-link");
+     add_btn.addEventListener("click",()=>{
+
+let domain_Name = find_Domain(input_field_link.value)   
+      console.log(domain_Name);
+
+      //  after  that we are to append the  line the a and them the ...
+
+
+          //  appending it to the text-area
+          let text_area_content = document.getElementById("text_area_pro");
+         let previouse = text_area_content.innerText
+
+      //  creating of the a tag 
+       let atag  = document.createElement("a");
+       atag.classList.add("hover:text-blue-300","m-3","text-blue-400","underline");
+       atag.href = input_field_link.value;
+        atag.textContent = domain_Name
+         
+         
+        //  the addition of the event for the a tag 
+         atag.addEventListener("click",(event)=>{
+            let href_now = event.target.href;
+             window.location.href =href_now;
+           
+         })
+
+  //  to the textarea we are appening it
+    text_area_content.appendChild(atag);
+
+      // testing the value of the link
+        console.log(text_area_content.innerText)
+         })
+
+
+     likn_btn.addEventListener("click",()=>{
+let link_parent = document.getElementById("link_parent")
+
+       link_parent.classList.toggle("hidden")
+     })
+
+       
+      
+ 
+         
+ 
+     
+    
+ 
+       
+ 
+ 
+ </script>

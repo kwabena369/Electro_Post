@@ -1,0 +1,429 @@
+ 
+   
+    
+
+   
+
+  <div class="
+  bg-neutral-200
+  m-auto
+  w-fit
+   flex 
+    items-center
+  
+     h-fit mt-6
+      border-3 border-solid border-gray-700
+     ">
+ <div class="wrapper
+ w-96
+ h-fit
+rounded-sm
+ bg-transparent
+m-auto 
+ text-center
+  border-solid
+   border-1
+">
+<h1
+class="
+text-center
+ text-3xl
+ w-fit
+ rounded-lg m-auto
+ mt-3
+  bg-orange-300
+   p-2 
+  "
+> SignUp
+<br>
+ <span 
+ class="warming-Massage
+  text-sm
+   text-red-700
+    p-1"></span>
+</h1>
+ 
+      <div class="input-form
+         backdrop-blur-2xl
+           p-2 
+        ">
+         
+           <form action="/user/signUp" method="post" 
+           >
+ <input type="text" name="handle" id="input_handle" class="hidden">;
+   <!--  here is for the email  -->
+   <div class="input-section
+   w-full
+   p-1
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text" name="emailContent" id="emailContent"
+     class="
+      email
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         placeholder-black
+         "
+          placeholder="Email"
+          onblur="checkTosee()"
+     required >
+   </div>
+<!-- her for the username  -->
+<div class="input-section
+w-full
+p-1
+ border-solid
+ border-black
+  border-b-2
+  m-1 
+relative
+"> 
+  <input type="text" name="fname" id="fname"
+  class="
+   w-full
+  outline-none
+   bg-transparent
+    border-none
+     text-xl 
+     font-semibold
+      placeholder-black
+      "
+  required  placeholder="FirstName">
+   
+ 
+       
+ 
+       
+</div>
+<div class="input-section
+w-full
+p-1
+ border-solid
+ border-black
+  border-b-2
+  m-1 
+relative
+"> 
+  <input type="text" name="lname" id="lname"
+  class="
+   w-full
+  outline-none
+   bg-transparent
+    border-none
+     text-xl 
+     font-semibold
+      placeholder-black
+      "
+  required  placeholder="LastName">
+   
+ 
+       
+ 
+       
+</div>
+<!-- for invisible handle -->
+
+   <div class="input-section 
+      first-pw
+   w-full
+   p-2
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input
+      
+      type="password" name="Password" id="GhostPass"
+     class="
+      w-full
+      bg-transparent
+       outline-none
+       border-none
+
+  text-xl 
+        font-semibold
+        placeholder-black
+
+         "
+          placeholder="Password"
+     required >
+     
+
+         
+        <span id="ShowHide" class="show-hide
+        absolute
+         justify-center
+        top-1/4
+         right-2
+          bg-slate-950
+           rounded
+            p-1
+             cursor-pointer
+             text-white
+              mb-3
+         ">
+           show
+        </span>
+        
+   </div>
+<div class="input-section
+second-pw
+w-full
+p-2
+ border-solid
+ border-black
+ border-b-2
+  m-1 
+relative
+"> 
+  <input
+  type="password" name="2Password" id="GhostPass2"
+  class="
+   w-full
+   bg-transparent
+   outline-none
+   border-none
+
+     text-xl 
+     font-semibold
+      placeholder-black
+      "
+      placeholder="Confirm-Password"
+
+  required >
+   
+
+      
+    <!--  -->
+     
+</div>
+  <!-- here we are going to be adding the remember me section and other -->
+   <div class="remember-forget
+     flex
+     justify-between
+      m-2
+    ">
+     <span>
+      <input id="rem" class="pl-1
+      " type="checkbox" name="rember me" id="">
+                 
+        <label for="rem">Remember  Me</label> 
+             </span>
+     </div>
+     
+ <div class="btn
+  m-3">
+     <span          
+ 
+      id="sub-btn"
+     class="
+      cursor-pointer
+     bg-gray-800
+    text-white
+     p-3
+      rounded-sm
+
+     "> Create Account</span>
+
+<!-- the shadow ranger -->
+<div
+id="handle_wrapper"
+ class="handle_wrapper
+   hidden 
+      fixed
+       top-1/2
+        left-1/2
+         pb-4
+        m-auto
+        -translate-x-1/2
+        -translate-y-1/2
+       bg-black
+        
+        duration-200
+        ease-in-out
+         p-1
+          rounded-md
+          z-50
+           text-white
+            ">
+  
+</div>
+
+
+
+
+
+     
+ </div>
+
+ <span class="
+ login
+  block
+ p-2
+  text-black
+"
+>
+
+Have account  <a href="/user/signUp" class="text-blue-800 hover:underline">
+  Login
+ </a>
+</span>  
+           </form>
+          
+            <div class="other-option bg-blue-400 p-3 rounded-lg text-center">
+               <a href="/auth">
+                 Google Options
+               </a>
+            </div>
+            
+      </div>
+ </div> 
+</div>
+ <!-- for the menu for the handle -->
+
+ <div class="fixed top-0 left-0 w-full h-full
+bg-black opacity-50 z-20 hidden
+ overlay"></div>
+
+
+
+<script>
+     
+     const password = document.getElementById("GhostPass");
+     const passwor2 = document.getElementById("GhostPass2");
+      const input_handle = document.getElementById("input_handle");
+
+   const showHide = document.getElementById("ShowHide");
+   const typeofthing = password.type
+    
+      showHide.addEventListener("click",()=>{
+        const typeofthing = password.type
+           if(typeofthing ==="password"  ){
+                   password.type ="text";
+                    showHide.innerHTML = "Hide"
+           }else{
+            password.setAttribute("type","password");;
+                    showHide.innerText = "Show"
+           }
+         
+      })
+
+
+      const subbtn  = document.getElementById("sub-btn");
+            // the action 
+        subbtn.addEventListener("click",function(){
+            const handle_wrapper = document.getElementById("handle_wrapper");
+         //  setting the value of the handle
+           handle_wrapper.addEventListener("click",(event)=>{
+         let target = event.target;
+           if(target !== null){
+             input_handle.value =  target.innerText;
+             }
+           })   
+          
+            
+             const fname  = document.getElementById("fname").value.
+          toLowerCase().replace(/\s/g,'');
+          const lname  =
+           document.getElementById("lname").value.toLowerCase()
+           .replace(/\s/g,'');
+        fetch(`/user/gen_handle/?fname=${fname}&lname=${lname}`).then(
+           res =>
+               res.json().then(value =>{
+                  value.handles.forEach(element => {
+                         let h_one = document.createElement("button");
+                          h_one.setAttribute("type","submit")
+                          h_one.classList.add("cursor-pointer","p-1","m-3","bg-red-300","rounded");
+                           h_one.innerText = element;
+                      handle_wrapper.append(h_one)
+                  },
+                  );
+
+
+                  
+                  handle_wrapper.classList.toggle("hidden");
+               })
+
+        )
+            
+        }) 
+
+          
+       
+ const warningMassage = document.querySelector(".warming-Massage")
+      //  here is the implementating of the checktosee
+      warningMassage.innerText = ""
+        function checkTosee(){
+          warningMassage.innerText = ""
+           const emailContent = document.getElementById("emailContent").value
+           
+        
+           fetch(`/user/check-email?email=${emailContent}`).then(
+       res =>
+      res.json()
+        ).then(
+             data =>{
+                if( data.isthere){
+   warningMassage.innerText = "Email is in the systme"
+       subbtn.disabled =  true
+                 }else{
+                  warningMassage.innerText = "GoGo"
+                  subbtn.disabled =  false
+
+   }
+  } 
+   
+              )               
+        }
+         
+
+         const firstpw = document.querySelector(".first-pw")
+         const secondpw = document.querySelector(".second-pw")
+
+        //  here is for the comparing
+           passwor2.addEventListener("input",()=>{
+             if(password.value === passwor2.value){
+                 firstpw.classList.toggle("border-green-500")
+                 secondpw.classList.toggle("border-green-500")
+                 firstpw.classList.remove("border-red-800");
+    secondpw.classList.remove("border-red-800");
+                 console.log("hope is there")
+                passwor2.setCustomValidity("");
+             }else{
+              firstpw.classList.remove("border-green-500");
+    secondpw.classList.remove("border-green-500");
+              firstpw.classList.add("border-red-800")
+                 secondpw.classList.add("border-red-800")
+              console.log("not equal")
+              passwor2.setCustomValidity(" Not equal password");
+
+             }
+             
+             
+           })
+          const email =  document.getElementById("emailContent"); 
+            email.oninput=()=>{
+                  // here is for the style
+                   let pattern = /\S+@\S+\.\S+/
+                    if(pattern.test(email.value)){
+                      email.parentElement.classList.toggle("border-green-500")
+                 email.parentElement.classList.remove("border-red-800");
+                    }else{
+                      email.parentElement.classList.remove("border-green-500");
+              email.parentElement.classList.add("border-red-800")
+
+                    }
+               
+            }
+    
+</script>

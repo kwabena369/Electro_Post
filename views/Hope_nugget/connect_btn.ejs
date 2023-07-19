@@ -1,0 +1,73 @@
+<!--  here is for the making of the comnect btn  -->
+ <div class="wrapper-connect
+  bg-red-600
+   rounded-lg
+   m-2
+   cursor-pointer
+    text-white
+         text-xl
+       font-medium
+     text-center
+     flex
+      flex-row
+      items-center
+     gap-1
+    w-fit 
+    p-1
+     " id="connect">
+      <!-- her it is going to be checking if the user is already are connect -->
+         
+       <% if (typeof connection_status !== null && typeof connection_status !== 'undefined') { %>
+      <span class="nature p-1 bg-black rounded-md" >
+        <%= connection_status %>
+      </span>
+      <% } %>
+       <br> 
+       
+      <span class="text-center p-0 text-xs n_o">
+        <%=S_Pro.currentUser.Number_Connectors%>
+      </span>
+ </div>
+  <script>
+
+   
+const socket = io();
+  
+  socket.on('<%=user.id%>',(data)=>{
+        //   get the id of the person we are dealing with 
+         let nature_change = document.querySelector('.nature');
+            nature_change.innerText = data.massage
+            //   for the number
+             let number = document.querySelector('.n_o');
+              number.innerText = data.current_Number
+              console.log(data)
+               
+   })
+   let user_id = '<%=user.id%>'
+       let connect_btn = document.getElementById("connect");
+        let to_be = '<%=S_Pro.currentUser.id%>';
+         
+     if(user_id === to_be){
+       connect_btn.classList.add("pointer-event-none","bg-red-300")
+     }
+   
+     connect_btn.addEventListener("click",()=>{
+         //  making the fetch request to check and save the thing
+     fetch(`/user/connect/${user_id}/to/${to_be}`).then(
+       res => res.json().then(
+         outcome =>{
+          
+         }
+       )
+     )
+     })
+
+      
+ 
+      
+
+
+        
+  
+  </script>
+   

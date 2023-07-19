@@ -1,0 +1,179 @@
+ 
+  <style>
+    .input-section input:focus ,
+    .input-section input:valid~ label{
+           top: -8px;
+            
+             font-size: 12px;
+       }
+  </style>
+  
+
+ <div class="Employ-form
+  fixed
+ z-50
+
+ top-1/2
+ left-0
+hidden
+ease-in-out
+ duration-200
+ bg-white
+      rounded-md
+      p-2
+      border-2
+      border-white
+ w-96
+ h-96
+m-auto 
+ text-center
+  border-solid
+   border-1
+">
+<h1
+class="
+text-center
+ text-3xl
+  bg-orange-300
+   p-2 
+  "
+>Employ-form</h1>
+   
+ 
+      <div class="input-form
+         backdrop-blur-2xl
+           p-2 
+        ">
+          
+   <div class="input-section
+   w-full
+   p-1
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text"  id="sch-name2"
+     class="
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         placeholder-black
+          "
+          placeholder="Job-Name"
+     required >
+   </div>
+
+    
+    
+ <!--  here is for what the person did there  -->
+   <div class="input-section
+     did_what_parent
+   w-full
+   p-2
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+
+    <!-- here is for the duration of the status -->
+     <div class="from_here flex flex-row ">
+       
+     <input type="text"  id="from_when"
+     class="
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         placeholder-black
+         "
+      placeholder="From_eg : 1992" >
+       
+       
+      <input type="text"  id="to_when"
+      class="
+       w-full
+      outline-none
+       bg-transparent
+        border-none
+         text-xl 
+         font-semibold
+          placeholder-black
+          "
+       placeholder="To eg : Present or 2011" >
+
+     </div>
+       
+     
+        
+   </div>
+
+
+ <div class="btn-save-crendentials
+  m-3">
+   
+     <button 
+     id="btns-credentials-1" 
+     type="submit"
+      
+     class="
+     btn_credential_1
+     bg-gray-800
+    text-white
+     p-3
+      rounded-sm
+
+     ">Save</button>
+ </div>
+
+         
+      </div>
+ </div> 
+
+
+
+ <!--  script for the show and the hiding of theo  password --> 
+  <script>
+
+//  here is for the one whic invlove the meplouement
+let save_btn_2  = document.querySelector(".btn_credential_1");
+
+
+
+
+  save_btn_2.addEventListener("click",()=>{
+ let ghost_here   = document.getElementById("sch-name2").value.replace(/\s/g,'');
+  //  here are the various input value  of the time of workings
+ let from_when = document.getElementById("from_when").value;
+ let to_when = document.getElementById("to_when").value;
+// now sending to the other people
+ if(education !== null && from_when !== null && to_when !== 0){
+    //  do the sending of the info
+
+    
+  fetch(`/setting/u/creadential2/?employment=${encodeURI(ghost_here)}
+  &from_when=${from_when}&to_when=${to_when}`,{
+     method :'POST'
+  }).then(
+        // for the redirecting
+         res =>{ if(res.redirected){
+          //  then do to thay place
+           window.location.href = res.url
+         } }
+     )
+   }
+  })
+
+  
+  
+  
+
+  </script>

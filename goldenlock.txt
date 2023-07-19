@@ -1,0 +1,48 @@
+// In your routes file
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
+
+// Route for rendering the edit password form
+router.get('/users/:userId/edit-password', (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      res.render('edit-password', { user });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send('Error finding user');
+    });
+});
+
+// Route for handling the password change form submission
+router.post('/users/:userId/edit-password', (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      bcrypt.compare(req.body.currentPassword, user.password, (err, result) => {
+        if (err || !result) {
+          res.render('edit-password', { user, errorMessage: 'Current password is incorrect' });
+        } else {
+          bcrypt.hash(req.body.newPassword, 10, (err, hashedPassword) => {
+            if (err) {
+              console.error(err);
+              res.status(500).send('Error hashing password');
+            } else {
+              user.password = hashedPassword;
+              user.save()
+                .then(() => {
+                  res.redirect('/users/' + user._id);
+                })
+                .catch(err => {
+                  console.error(err);
+                  res.status(500).send('Error saving user');
+                });
+            }
+          });
+        }
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send('Error finding user');
+    });
+});

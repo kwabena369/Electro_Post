@@ -1,0 +1,132 @@
+
+   
+ <!-- for account -->
+        <% if (typeof user !== null && typeof user !== 'undefined') { %>
+   <!-- here is for filleds -->
+   <div class="
+    rounded-lg 
+    text-center
+   relative
+    text-black
+     m-auto
+     h-auto
+     p-10
+     text-2xl
+  bg-green-500
+     w-full
+    flex
+    flex-col
+     space-y-1
+   "> 
+   
+   <span id="email_massage"></span>
+      <span
+       class="w-3/4 m-auto p-2 ">
+         
+      <input type="text"
+    id="emailContent" name="emailContent" 
+       value="<%= user.Email %>"
+     class="
+     p-2
+      rounded-md
+      email
+       text-center
+      w-full
+     outline-none
+      bg-opacity-2
+      bg-red-500
+       border-none
+        text-xl 
+        font-semibold
+         "  readonly> 
+        <br>
+      </span>
+
+      <span id="chang-email" class="
+                         m-auto
+                    w-fit
+                     bg-white
+                rounded-md 
+                 p-2 ">
+               Change-Email
+            </span>
+ 
+  
+     <!-- for the user of the making of the change in the pw  -->
+      <span class="change-PW
+  bg-white
+   text-black
+   p-2
+    m-auto
+    rounded-md
+           font-sans
+            text-xl">
+     <a id="change_pw" href="/setting/u/ch_pw" >
+
+               Change-Password
+        </a>
+         </span>
+   
+    </div>
+   <% } %>
+
+
+ <script>
+   let changeMail  = document.getElementById("chang-email"); 
+    let email_input  = document.getElementById("emailContent");
+    let email  = document.getElementById("emailContent");
+     let email_massage   = document.getElementById("email_massage")
+     
+changeMail.addEventListener("click",()=>{
+    changeMail.innerText = "Save Change";
+     email_input.removeAttribute("readonly");
+      email_input.classList.toggle("bg-white")
+  
+      if(changeMail.innerText === "Save Change"  &&
+       changeMail.classList.contains("bg-green-300")){
+      // changing the email 
+      let email_input  = document.getElementById("emailContent");
+      console.log(email_input.value);
+        fetch(`/setting/u/editmail?email=${email_input.value}`).then(
+            res => res.json().then(
+                outcome=>{
+                   if(outcome.isthere){
+                    email_massage.innerText = "email is already in user by other user"  
+                    email_massage.classList.add("text-green")
+                   }else{
+                     email_massage.classList.add("text-green")
+                      email_massage.innerText  =  "Edit user successful"
+                   changeMail.innerText =  "change-email";
+                      }
+                  
+                }
+            )
+        )
+         
+      }
+      
+    })
+ 
+ 
+     email_input.oninput=()=>{
+                  // here is for the style
+                   let pattern = /\S+@\S+\.\S+/
+                    if(pattern.test(email.value)){
+                      email.parentElement.classList.toggle("border-green-500")
+                 email.parentElement.classList.remove("border-red-800");
+                 changeMail.classList.toggle("bg-red-300")
+                 changeMail.classList.remove("bg-red-300")
+                    changeMail.classList.add("bg-green-300")
+                 }else{
+                      email.parentElement.classList.remove("border-green-500");
+              email.parentElement.classList.add("border-red-800")
+              changeMail.classList.add("bg-red-300")
+                    changeMail.classList.remove("bg-green-300")
+             }
+                     
+               
+            }
+
+     
+
+ </script>

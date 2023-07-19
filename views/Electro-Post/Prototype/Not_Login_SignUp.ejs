@@ -1,0 +1,520 @@
+
+ 
+  <!--  for the delete Prompt thing -->
+
+
+
+  
+<div class="
+mega-wrapper
+m-auto
+flex
+flex-col
+ space-y-0
+   bg-lime-400
+   rounded-lg
+   h-fit
+    w-larger
+    small:w-full
+     ">
+    
+     <% if (typeof S_Pro !== null && S_Pro !== "undefined"){ %>
+        
+        <!-- here is for the display of the three btn for the eidt and othere -->
+       
+  
+           <div class="image-Preview
+          w-full
+          h-2/5
+          m-auto
+          rounded-lg
+           mt-0
+            ">
+            <% if (S_Pro.pp.split('.')[1] === "mp4") { %>
+              <video src="/<%=S_Pro.pp%>/p" controls></video>
+             <% } else{%>
+
+         <img class="
+         w-full
+         rounded-lg
+         h-full
+         " src="/<%=S_Pro.pp%>/p" alt="">
+         <% } %>
+        </div>
+
+
+         <div class="grid bg-orange-500"
+           style="grid-template-columns: repeat(3,1fr);">
+ 
+<span class="hidden">
+ <% let date_then  = new Date(S_Pro.dateCreated) %>   
+ <% let date_now = new Date() %>     
+  <% let difference_millisec =  date_now - date_then %>     
+  <% let Number_second  = Math.floor((difference_millisec)/1000) %>     
+  <% let Number_minute  = Math.floor((difference_millisec)/(1000*60)) %>     
+  <% let Number_hours  = Math.floor((difference_millisec)/(1000*60*60)) %>     
+  <% let Number_day  = Math.floor((difference_millisec)/(1000*60*60*24)) %>     
+  <% let Number_week  = Math.floor((difference_millisec)/(1000*60*60*24*7)) %>     
+  <% let Number_month  = Math.floor((difference_millisec)/(1000*60*60*24*7*30)) %>     
+  <% let Number_year  = Math.floor((difference_millisec)/(1000*60*60*24*7*30*365)) %>     
+  <!-- making use of the  -->
+  
+   <% let time_passed; %>
+</span>
+   
+ <span
+ style="grid-area: 1/2/1/3;"
+ class="time font-serif text-center text-xl">
+      <% if (Number_second <60) { %>
+          <% time_passed = Number_second+" s ago"%>
+          <%= time_passed %>
+      <% }else if(Number_minute>0 && Number_minute <60){ %>
+        <% time_passed = Number_minute+" m ago"%>
+        <%= time_passed %>
+         <% }else if(Number_hours>0 && Number_hours < 24){%>
+        <% time_passed = Number_hours+" h ago"%>
+          <%= time_passed %>
+           <% }else if(Number_day>0 && Number_day <7){%>
+            <% time_passed = Number_day+" day ago"%>
+            <%= time_passed %>
+              <% }else if(Number_week >0 && Number_week < 6){ %>
+            <% time_passed = Number_week+" week ago" %>
+            <%= time_passed %>
+                 <% }else if(Number_month>0&&Number_month <12){ %>
+            <% time_passed = Number_month+" month ago"%>
+             <%= time_passed %>
+                   <% }else if(Number_year>0){%>
+            <% time_passed = Number_year+" year ago"%>
+                         <%= time_passed %>
+                     <% } %>
+  </span>
+ 
+ 
+                      
+    <span id="like_wrapper" class="flex
+     flex-row 
+    w-fit rounded-md
+    p-2
+     space-x-4
+    bg-gray-900
+    text-white
+    text-xl
+      justify-start m-auto">
+  
+      <i id='<%=S_Pro.id%>'
+        class="fas fa-heart 
+         cursor-pointer
+          like_btn p-1
+           ">
+       <span id="Number-<%=S_Pro.id%>"
+          class="text-sm">
+          <%= S_Pro.Number_likes %>
+       </span>
+
+   
+     </i>
+
+          <!-- for the number of viewer -->
+          <span id="viewer ">
+            <i class="fas fa-eye flex flex-col"></i>
+             <!--  the real deal -->
+             <small><%= S_Pro._Number_View%></small>
+           </span>
+ 
+        <i class ="
+        fas fa-comment  
+        text-white
+        cursor-pointer
+         like_btn p-1
+         text-2xl">
+           <span id="Another_Comment<%=S_Pro.id%>" 
+             class="text-sm"><%= S_Pro._Number_Comment %>
+            </span>
+        </i>
+ 
+    </span>
+  </div>
+    
+    
+ 
+ <!--  this is going to be shown in the case where there are file in there -->
+  
+  <div class="wrapper_shared_file">
+
+      
+    <!-- first check -->
+      
+    <% if (S_Pro._arraypp_file !== null) { %>
+     
+     
+     <% if (S_Pro._arraypp_file.length !== 0){ %>
+<span id="file_drop_btn"
+ class=" m-2 font-sans cursor-pointer w-fit">
+  <i class="fas fa-file
+  text-red-400
+ text-3xl">
+  </i>
+</span>
+<div id="file_stage" class="
+bg-sky-200
+rounded-lg
+w-0
+p-1
+transform
+ m-4
+ duration-300
+  ease-linear
+text-white
+overflow-hidden
+flex
+stack-image 
+ items-center
+  justify-center ">
+    <% if (S_Pro._arraypp_file !== null) { %>
+ <% if (S_Pro._arraypp_file.length>=0) { %>
+    <% S_Pro._arraypp_file.forEach(obj => { %>
+          <% Object.entries(obj).forEach(([key,value]) => { %>
+        <%= value %>      
+            <% }); %>
+    <% }); %>
+   <% } %>
+<% } %>
+</div>
+<% }else{%>     
+<div id="file_stage">
+</div>
+<div id="file_drop_btn">
+</div>
+<%} %>
+</div>
+
+<% } %>
+ 
+
+<!--   if the elemenet in the array of pp is greater than one -->
+
+ <% if (S_Pro._arraypp !== null ) { %>
+           <div class="
+           m-auto
+         bg-red-400
+          rounded-lg
+           p-1
+           w-fit
+           stack-image 
+           flex
+            items-center
+             justify-center ">
+
+           
+            <% if (S_Pro._arraypp.length>1) { %>
+               <% S_Pro._arraypp.forEach(obj => { %>
+                
+                     <% Object.entries(obj).forEach(([key,value]) => { %>
+                   <!--  for the other dispaly of pp -->
+                   <img
+           class=" 
+          
+          h-12
+           w-12
+           rounded-full
+           p-1" src="/<%=value%>/p" alt="no image">
+                       <% }); %>
+               <% }); %>
+              <% } %>
+         </div>
+ <% } %>
+       
+           <div class="description
+           m-auto
+            flex
+            flex-col
+          h-40
+          bg-slate-900 w-full text-white
+              text-center rounded-md p-0 ">
+
+                <!-- for the titlt -->
+               <span class="underline 
+                w-4/5
+                  m-auto 
+                   text-xl
+                   font-bold p-0 ">
+                 <%= S_Pro.protypeName %>
+               </span>
+                  
+               <!-- here is the content -->
+              <%- S_Pro.discribePrototype %>
+               
+             </div>
+              
+             
+
+             
+ <div class="comment_mega_wrapper
+  flex flex-col
+  border-1 border-solid
+  bg-gray-700
+  mt-2
+   w-full
+  h-96
+  rounded-md">
+
+   <!--  for the dispaly -->
+   <div class="dispaly_commnet
+    w-full
+     h-full
+      flex
+       flex-col
+ justify-between
+       overflow-auto
+     overflow-y-auto
+     overflow-x-hidden
+      border-2 border-solid
+        border-blue-500
+         rounded-lg
+      p-5 "id="<%=S_Pro.id%>now">
+     
+
+       <!-- here is for the chat system display -->
+        <% if (typeof user_comment !== null && typeof user_comment !== 'undefined' ) { %>
+          
+
+          <!--  for the each -->
+            <% user_comment.forEach(element => { %> 
+ <!-- for the display of the user profile -->
+  <div class="bg-pink-200 w-fit text-center p-1
+   h-fit
+   relative 
+ m-1
+ flex
+ flex-col
+    rounded-md
+   <%="mr-auto"%>
+    rounded-bl-3xl">
+    <a href=" /<%=element._doc.currentUser.Userhandle%>">
+    <span  class="
+ userprofile 
+   text-xs
+   flex
+    flex-row
+   w-full
+   items-start
+   "> 
+   
+  <img
+   class="
+   w-7
+   h-7
+   rounded-full
+     "
+  src="<% if (element._doc.currentUser.userProfile !== ""){ %>userProfile/<%=element._doc.currentUser.userProfile %>
+     <% } else{%><%="/Default-Profile.png "%><% } %>"
+  >
+ <span class="handlename font-bold">
+   <%= element._doc.currentUser.Userhandle %>
+   <br> 
+</span>
+ </span>
+</a>
+
+ 
+               
+              <span class="
+              text-black
+               font-sans
+                text-sm
+                w-52
+                 h-fit
+                  block
+                   
+              ">
+              <%= element.chat_content %>
+            
+               <!--  for the output of the userid for the s_Pro -->
+               </span>
+              <!-- for the like and the dispaly of the 
+               comment -->
+                <span id="parent_like_dis"  class=" 
+                 w-fit
+                  ml-auto
+                 rounded-md like_displike "> 
+                  <i class=" text-sm 
+                  L_D
+                  bg-green-400
+                   rounded-lg
+                   p-1
+                  text-white
+                  fas fa-thumbs-up
+                  cursor-pointer - m-1" id="LIKE_<%=element._doc._id%>">
+
+                    <small class="like">
+                       <%= element._doc.Number_Like%>
+                     </small>
+                   </i>
+                  <i id="DISLIKE_<%=element._doc._id%>" class="text-sm
+                    L_D
+                    bg-red-400
+                    rounded-lg
+                    p-1
+                    text-white
+                    cursor-pointer 
+                    fas fa-thumbs-down m-1">
+                   <small class="dislike">
+                    <%= element._doc.Number_dislike%>
+                   </small>             
+                  </i>      
+                   
+                </span>
+                    <!-- here is repaly btn where it is going to be displaying the
+                     valiue of the thing under the comment -->
+               <span>
+                 
+                      <i class="p-2  fas fa-comments cursor-pointer font-sans text-xl
+                 reply_btn"
+                 id="replynow_<%=element._doc._id%>"
+                 >
+                 <%= element.each_count %>
+                </i>
+               </span>
+               <!--  here is for the display of the replys 
+               so far as this is not been click this is hidden-->
+                
+                <div id="reply_<%=element._doc._id %>" class="one_reply 
+                   flex-col space-y-3 h-fit hidden">
+                
+                   <div class="replyS_ flex flex-col space-y-3"  id="<%=element._doc._id%>">
+                      <!-- here is for the sub comment   -->
+                 <% if (element.reply.length !== null) { %>
+                    <% element.reply.forEach(element => { %>
+                       <span class="bg-white rounded-lg p-1 w-20 flex ml-auto">
+                        <%= element.content %>
+                       </span>
+                       </span>
+                    <% }) %>
+                 <% } %>
+                   </div>
+                   <!-- for the input of the comment -->
+                   <div class="reply-area 
+                   mt-2
+                  items-stretch
+                  w-2/3                 
+                  h-fit
+                   flex flex-row 
+                     text-center m-auto  p-1"> 
+                         <span 
+                         class="w-full bg-slate-600
+                         overflow-none
+                         h-full text-white outline-none
+                         rounded-md
+                         text-xl
+                         border-none
+                         placeholder-white 
+                          p-1  " 
+                         type="text" 
+                          contenteditable
+                           id="reply_content"
+                           >
+                           </span>
+                    
+                    
+                         <i id="reply_user_btn"  class="fa fa-paper-plane cursor-pointer
+                         rounded-md
+                          text-xl 
+                           text-gray-800
+                            w-fit
+                            h-fit
+                          p-2
+                           hover:bg-white
+                            duration-200" aria-hidden="true"></i>
+             
+                        
+                  </div>
+            
+                </div>
+          
+          
+          
+          
+              </div>
+               
+
+            <% }) %>
+        <% } %>
+   </div>
+
+
+
+
+  </div>
+    <!-- for send input ifled and the btn -->
+    <div class="texting_area 
+       mt-2
+      items-stretch
+      w-2/3
+  
+          
+       flex flex-row 
+         text-center m-auto  p-1"> 
+             <span 
+             class="w-full bg-slate-600
+             overflow-none
+             h-auto text-white outline-none
+             rounded-md
+             text-xl
+             border-none
+             placeholder-white 
+              relative
+              p-1  " 
+             type="text" name="chat_conent"
+              contenteditable
+              placeholder="text here ...." id="comment_conent"
+               >
+                
+                
+               </span>
+        
+          <span id="comment_user_btn" class="cursor-pointer
+           rounded-md
+            text-xl 
+             text-gray-800
+              w-fit
+              h-fit
+            p-2
+             hover:bg-white
+              duration-200
+              "> 
+             <i class="fa fa-paper-plane" aria-hidden="true"></i>
+           </span>
+            
+      </div>
+
+     <% } %>
+    
+   </div>
+      <!--  when -->
+
+<!-- for the overlay  -->
+
+
+
+ <%- include('../overlay.ejs') %>
+
+ <script>
+
+
+
+
+
+
+
+  
+     
+  // seting up a new connection 
+        // input_content
+ let comment_content = document.getElementById("comment_conent")
+//   for the send_btn 
+ let comment_user_btn = document.getElementById("comment_user_btn");
+
+ comment_user_btn.addEventListener("click",()=>{
+    window.location.href = "/user/logIn"
+ })
+      </script>

@@ -1,0 +1,212 @@
+ 
+  <style>
+    .input-section input:focus ,
+    .input-section input:valid~ label{
+           top: -8px;
+            
+             font-size: 12px;
+       }
+  </style>
+  
+  <div class="
+   w-4/5
+  bg-none
+   flex 
+    items-center
+     h-full2
+  
+      m-auto
+     ">
+ <div class="wrapper
+ border-2 
+  border-black
+   rounded-lg
+ h-fit
+ p-3
+w-full
+ bg-transparent
+m-auto 
+ text-center
+  border-solid
+   border-1
+">
+<h1
+class="
+text-center
+ text-3xl
+  bg-orange-300
+   p-2 
+  "
+> LogIn</h1>
+   
+ <!--  this is  an alert for the password   -->
+ <% if (typeof news !== null && typeof news !== "undefined") { %>
+ <span 
+  class="bg-red-700
+   p-1
+    w-12
+    rounded
+     m-2
+      ">
+      <%= locals.news %>
+      </span>
+   
+ <% } %>
+
+      <div class="input-form
+         backdrop-blur-2xl
+           p-2 
+        ">
+           <form action="/user/logIn" method="post" 
+           >
+   <div class="input-section
+   w-full
+   p-1
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text" name="emailContent" id=""
+     class="
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         placeholder-black
+          "
+          placeholder="Email"
+     required >
+     
+          
+    
+          
+   </div>
+   <div class="input-section
+   w-full
+   p-2
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="password" name="Password" id="GhostPass"
+     class="
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         placeholder-black
+         "
+     required
+      placeholder="Password" >
+       
+        <span 
+          id="ShowHide"
+         class="show-hide
+        absolute
+         justify-center
+        top-1/4
+         right-2
+          bg-slate-950
+           rounded
+            p-1
+             cursor-pointer
+             text-white
+              mb-3
+         ">
+           show
+        </span>
+        
+   </div>
+  <!-- here we are going to be adding the remember me section and other -->
+   <div class="remember-forget
+     flex
+     justify-between
+      m-2
+    ">
+     <span>
+      <input id="rem" class="pl-1
+      " type="checkbox" name="rember me" id="">
+                 
+        <label for="rem">Remember  Me</label> 
+             </span>
+     </div>
+      
+      <!-- here is for the foregeting of the password -->
+         <div class="forget-PW">
+            
+             <span
+             class="
+              hover:text-blue-800 underline
+                font-medium
+                 text-xl
+               "
+              >
+               <a href="/user/forget">
+               Forgot Password 
+              </a>
+             </span>
+         </div>
+        
+  
+
+ <div class="btn
+  m-3">
+     <button type="submit"
+      
+     class="
+     bg-gray-800
+    text-white
+     p-3
+      rounded-sm
+
+     "> Log In</button>
+ </div>
+
+ <span class="
+ login
+  block
+ p-2
+  text-black
+"
+>
+
+Have account  <a href="/user/logIn" class="text-blue-800 hover:underline">
+  SignUp
+ </a>
+</span>  
+           </form>
+         
+      </div>
+ </div> 
+</div>
+
+
+
+ <!--  script for the show and the hiding of theo  password --> 
+  <script>
+     
+      const password = document.getElementById("GhostPass");
+       const showHide = document.getElementById("ShowHide");
+       const typeofthing = password.type
+        
+          showHide.addEventListener("click",()=>{
+            const typeofthing = password.type
+               if(typeofthing ==="password"  ){
+                       password.type ="text";
+                        showHide.innerHTML = "Hide"
+               }else{
+                password.setAttribute("type","password");;
+                        showHide.innerText = "Show"
+               }
+             
+          })
+        
+  </script>

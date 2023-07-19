@@ -1,0 +1,43 @@
+
+<div
+ class="
+  items-center
+   font-semibold
+    text-1xl
+     text-pink-600
+      p-3
+       m-4
+     " 
+>
+<!-- here we are going to be creating the div element which
+     is going to be housing the various staff we are haiving  -->
+        <% if (locals.NowMusic !== null) { %>
+            <% NowMusic.forEach(element => { %>
+               
+ 
+                <div class="
+                 w-smpart
+                  bg-slate-600
+                  h-16
+                   pl-3
+  flex
+   justify-start
+                  rounded
+                   m-4
+                    text-center
+                     ">
+                    <a 
+                    class="
+                     "
+                    href="
+                    <%= element.url %>
+                     ">
+                     <%=element.name %>
+                    </a> 
+                </div>
+                
+                
+            <% }) %>
+             
+        <% } %>
+</div>

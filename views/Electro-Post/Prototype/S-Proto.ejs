@@ -1,0 +1,1524 @@
+
+ 
+  <!--  for the delete Prompt thing -->
+
+
+
+  <div class="show_hide_small_thing bg-orange-400  text-2xl cursor-pointer w-fit p-4 rounded-lg font-sans 
+  m-auto">
+ <i class="fas fa-eye" id="shower_hider"></i>
+ </div>
+
+
+  <%- include('delete_prompt.ejs') %>
+<div class="
+mega-wrapper
+m-auto
+flex
+flex-col
+ space-y-0
+   bg-slate-300
+   rounded-lg
+   h-fit
+    w-larger
+    small:w-full
+     ">
+
+ 
+
+    
+     <% if (typeof S_Pro !== null && S_Pro !== "undefined"){ %>
+        
+        <!-- here is for the display of the three btn for the eidt and othere -->
+       
+        <% if (typeof dis_three_dot !== null && typeof dis_three_dot !== 'undefined') { %>
+          <% if (dis_three_dot){ %>
+           
+         <div class="three_bot  z-50 
+          ">
+           <span class="w-50 h-40 p-3 
+             rounded-full cursor-pointer
+             three_dot" id="three_dot">
+              <i class="fas fa-ellipsis-v real-three-btn  w-14 h-14 p-4">
+              </i>
+             </span>
+           
+              
+  
+  
+            
+  <div class="bg-orange-400
+  w-fit 
+  rounded-md 
+   text-2xl
+    absolute
+   p-4 
+    hidden
+    z-50
+   flex-col"
+    id="three_bot_form">
+     
+  <span class="edit p-2 rounded-md cursor-pointer hover:bg-slate-100">
+     <a id="edit_btn">
+         Edit
+     </a>
+  </span>
+   <!-- here for the deleting of post -->
+    
+  <span class="delete_btn
+   p-2 rounded-md cursor-pointer
+    hover:bg-slate-100">
+  <a>Delete</a>
+  </span>
+   <!--  -->
+  </div>
+   
+           </div>
+          <% }else{%>
+           <div id="three_bot_form"  class=" hidden three_dot">
+             <span id="edit_btn"></span>
+             </div>
+<!-- fake-- -->
+ <div class="prompt_delete">
+   <span class="delete_btn">
+   </span>
+ </div>
+          <% } %>
+       <% } %>
+        <!-- here is for the display of the tagname -->
+           <div class="image-Preview
+          w-full
+          h-2/5
+          m-auto
+          relative
+          text-center
+          rounded-lg
+           mt-0
+            ">
+             
+            <% if (S_Pro.pp.split('.')[1] === "mp4") { %>
+              <video src="/<%=S_Pro.pp%>/p" controls></video>
+             <% } else{%>
+
+
+
+                        <!--  here is the containere for the image -->
+    <div class="relative bean_mega w-full h-full rounded-lg">
+      <img class="
+      w-full<% let done_mega_file_kind =S_Pro.pp.split("-")["1"]%>
+      <%=done_mega_file_kind%>
+      rounded-lg
+       h-full
+     -z-20
+      " 
+      src="/<%=S_Pro.pp%>/p"
+       id="rea_deal_of_image" alt="">
+     
+ </div> 
+
+      
+       <% if (typeof small_chat !== null && typeof small_chat !== 'undefined' ) { %>
+
+         <% small_chat.forEach(element => { %>
+        
+
+           <!--  here am going to get the value of the S_pro
+              _there the thing of the first thing there -->
+          <span class="p-2 w-3 
+          absolute
+          bg-red-400
+          z-50 block
+         h-3 rounded-lg text-center
+          one_ball_here" 
+          <% var current_viewing_file_there = S_Pro.pp.split("-")["1"]%>
+          <% let done_here=element.where_X+"-"+element.where_Y+"-"+element.id+"-"+element.of_kind+"-"+current_viewing_file_there%>
+          id="<%=done_here%>"
+     >
+         </span> 
+           
+          <span
+          id="realChat_<%=element.id%>"
+           class=" p-4 
+            mt-5
+          z-40 rounded-lg    bg-pink-400
+           hidden text-white absolute   text-xl"> 
+            <%=element.content%>
+           </span>
+
+         <% }) %>
+         <% } %>
+      
+     
+      
+        
+      <!-- // realChat_ -->
+         <% } %>
+        </div>
+         
+
+
+         <div class="flex flex-row space-x-5 w-full 
+         justify-evenly">
+ 
+
+          <span>
+            <%- include('../../Hope_nugget/connect_btn.ejs') %>
+          </span>
+<span class="hidden">
+ <% let date_then  = new Date(S_Pro.dateCreated) %>   
+ <% let date_now = new Date() %>     
+  <% let difference_millisec =  date_now - date_then %>     
+  <% let Number_second  = Math.floor((difference_millisec)/1000) %>     
+  <% let Number_minute  = Math.floor((difference_millisec)/(1000*60)) %>     
+  <% let Number_hours  = Math.floor((difference_millisec)/(1000*60*60)) %>     
+  <% let Number_day  = Math.floor((difference_millisec)/(1000*60*60*24)) %>     
+  <% let Number_week  = Math.floor((difference_millisec)/(1000*60*60*24*7)) %>     
+  <% let Number_month  = Math.floor((difference_millisec)/(1000*60*60*24*7*30)) %>     
+  <% let Number_year  = Math.floor((difference_millisec)/(1000*60*60*24*7*30*365)) %>     
+  <!-- making use of the  -->
+  
+   <% let time_passed; %>
+</span>
+   
+ <span
+ style="grid-area: 1/2/1/3;"
+ class="time  text-center pt-2 text-2xl font-sans ">
+      <% if (Number_second <60) { %>
+          <% time_passed = Number_second+" s ago"%>
+          <%= time_passed %>
+      <% }else if(Number_minute>0 && Number_minute <60){ %>
+        <% time_passed = Number_minute+" m ago"%>
+        <%= time_passed %>
+         <% }else if(Number_hours>0 && Number_hours < 24){%>
+        <% time_passed = Number_hours+" h ago"%>
+          <%= time_passed %>
+           <% }else if(Number_day>0 && Number_day <7){%>
+            <% time_passed = Number_day+" day ago"%>
+            <%= time_passed %>
+              <% }else if(Number_week >0 && Number_week < 6){ %>
+            <% time_passed = Number_week+" week ago" %>
+            <%= time_passed %>
+                 <% }else if(Number_month>0&&Number_month <12){ %>
+            <% time_passed = Number_month+" month ago"%>
+             <%= time_passed %>
+                   <% }else if(Number_year>0){%>
+            <% time_passed = Number_year+" year ago"%>
+                         <%= time_passed %>
+                     <% } %>
+  </span>
+                      
+    <span id="like_wrapper" class="flex
+     flex-row 
+    w-fit rounded-md
+    p-2
+     space-x-4
+    bg-gray-900
+    text-white
+    text-xl
+      justify-start m-auto">
+  
+      <i id='<%=S_Pro.id%>'
+        class="fas fa-heart 
+         cursor-pointer
+          like_btn p-1
+           ">
+       <span id="Number-<%=S_Pro.id%>"
+          class="text-sm">
+          <%= S_Pro.Number_likes %>
+       </span>
+
+   
+     </i>
+
+          <!-- for the number of viewer -->
+          <span id="viewer ">
+            <i class="fas fa-eye flex flex-col"></i>
+             <!--  the real deal -->
+             <small><%= S_Pro._Number_View%></small>
+           </span>
+ 
+        <i class ="
+        fas fa-comment  
+        text-white
+        cursor-pointer
+         like_btn p-1
+         text-2xl">
+           <span id="Another_Comment<%=S_Pro.id%>" 
+             class="text-sm"><%= S_Pro._Number_Comment %>
+            </span>
+        </i>
+ 
+    </span>
+  </div>
+    
+    
+ 
+ <!--  this is going to be shown in the case where there are file in there -->
+  
+  <div class="wrapper_shared_file">
+
+      
+    <!-- first check -->
+      
+    <% if (S_Pro._arraypp_file !== null) { %>
+     
+     
+     <% if (S_Pro._arraypp_file.length !== 0){ %>
+<span id="file_drop_btn"
+ class=" m-2 font-sans cursor-pointer w-fit">
+  <i class="fas fa-file
+  text-red-400
+ text-3xl">
+  </i>
+</span>
+<div id="file_stage" class="
+bg-sky-200
+rounded-lg
+w-0
+p-1
+transform
+ m-4
+ duration-300
+  ease-linear
+text-white
+overflow-hidden
+flex
+stack-image 
+ items-center
+  justify-center ">
+    <% if (S_Pro._arraypp_file !== null) { %>
+ <% if (S_Pro._arraypp_file.length>=0) { %>
+    <% S_Pro._arraypp_file.forEach(obj => { %>
+          <% Object.entries(obj).forEach(([key,value]) => { %>
+        <%= value %>      
+            <% }); %>
+    <% }); %>
+   <% } %>
+<% } %>
+</div>
+<% }else{%>     
+<div id="file_stage">
+</div>
+<div id="file_drop_btn">
+</div>
+<%} %>
+</div>
+
+<% } %>
+ 
+
+<!--   if the elemenet in the array of pp is greater than one -->
+
+ <% if (S_Pro._arraypp !== null ) { %>
+           <div class="
+           m-auto
+         bg-red-400
+          rounded-lg
+           p-1
+           w-fit
+           stack-image 
+           flex
+            items-center
+             justify-center ">
+
+           
+            <% if (S_Pro._arraypp.length>1) { %>
+               <% S_Pro._arraypp.forEach(obj => { %>
+                
+                     <% Object.entries(obj).forEach(([key,value,index]) => { %>
+                   <!--  for the other dispaly of pp -->
+                   <img
+           class="
+          <% let done_mega_file_kind =value.split("-")["1"]%>
+          <%=done_mega_file_kind%>
+          h-12
+           w-12
+           rounded-full
+           p-1" src="/<%=value%>/p" alt="no image" id="one_of_them">
+                       <% }); %>
+               <% }); %>
+              <% } %>
+         </div>
+ <% } %>
+       
+           <div class="description
+           m-auto
+            flex
+             border-3 border-solid
+              border-gray-400
+               rounded-lg
+            flex-col
+          h-fit
+          bg-white w-full text-black
+              text-center  p-0 
+              
+              ">
+
+                <!-- for the titlt -->
+               <span class=" 
+               border-solid 
+               border-b-3 border-b-white 
+                w-4/5
+                  m-auto 
+                  font-sans
+                   text-xl
+                   font-bold p-0 ">
+                 <%= S_Pro.protypeName %>
+               </span>
+                  
+               <!-- here is the content -->
+              <%- S_Pro.discribePrototype %>
+               
+             </div>
+              <% } %>
+             
+
+             
+  <div class="comment_mega_wrapper
+ flex flex-col
+ border-1 border-solid
+ bg-gray-700
+  w-full
+ h-96
+ rounded-md">
+
+  <!--  for the dispaly -->
+  <div class="dispaly_commnet
+   w-full
+    h-fit
+     flex
+      flex-col
+justify-between
+      overflow-auto
+    overflow-y-auto
+    overflow-x-hidden
+     border-2 border-solid
+       border-blue-500
+        rounded-lg
+     p-5 "id="<%=S_Pro.id%>now">
+
+
+
+
+
+
+<!-- here is for the chat system display -->
+<% if (typeof user_comment !== null && typeof user_comment !== 'undefined' ) { %>
+
+<!--  for the each -->
+ <% user_comment.forEach(element => { %> 
+<!-- for the display of the user profile -->
+<% if (element._doc.Of_kind ==='text') { %>
+<div class="bg-pink-200 w-fit text-center p-1
+h-fit
+relative 
+m-1
+flex
+flex-col
+rounded-md
+<% if (user.Userhandle === element._doc.currentUser.Userhandle) { %>
+<%="ml-auto"%>
+<% }else{ %>
+<%="mr-auto"%>
+   <% } %>
+rounded-bl-3xl">
+<a href=" /<%=element._doc.currentUser.Userhandle%>">
+<span  class="
+userprofile 
+text-xs
+flex
+flex-row
+w-full
+items-start
+"> 
+
+<img
+class="
+w-7
+h-7
+rounded-full
+ "
+src="<% if (element._doc.currentUser.userProfile !== ""){ %>userProfile/<%=element._doc.currentUser.userProfile %>
+ <% } else{%><%="/Default-Profile.png "%><% } %>"
+>
+<span class="handlename font-bold">
+<%= element._doc.currentUser.Userhandle %>
+<br> 
+</span>
+</span>
+</a>
+
+
+           
+          <span class="
+          text-black
+           font-sans
+            text-sm
+            w-52
+             h-fit
+              block
+               
+          ">
+          <%= element.chat_content %>
+        
+           <!--  for the output of the userid for the s_Pro -->
+           </span>
+          <!-- for the like and the dispaly of the 
+           comment -->
+            <span id="parent_like_dis"  class=" 
+             w-fit
+              ml-auto
+             rounded-md like_displike "> 
+              <i class=" text-sm 
+              L_D
+              bg-green-400
+               rounded-lg
+               p-1
+              text-white
+              fas fa-thumbs-up
+              cursor-pointer - m-1" id="LIKE_<%=element._doc._id%>">
+
+                <small class="like">
+                   <%= element._doc.Number_Like%>
+                 </small>
+               </i>
+              <i id="DISLIKE_<%=element._doc._id%>" class="text-sm
+                L_D
+                bg-red-400
+                rounded-lg
+                p-1
+                text-white
+                cursor-pointer 
+                fas fa-thumbs-down m-1">
+               <small class="dislike">
+                <%= element._doc.Number_dislike%>
+               </small>             
+              </i>      
+               
+            </span>
+                <!-- here is repaly btn where it is going to be displaying the
+                 valiue of the thing under the comment -->
+           <span>
+             
+                  <i class="p-2  
+                  fas fa-comments cursor-pointer font-sans text-xl
+             reply_btn"
+             id="replynow_<%=element._doc._id%>"
+             >
+             <%= element.each_count %>
+           </i>
+           </span>
+           <!--  here is for the display of the replys 
+           so far as this is not been click this is hidden-->
+           <div id="reply_<%=element._doc._id %>" class="one_reply 
+             flex-col space-y-3 h-fit hidden">
+          
+             <div class="replyS_ flex flex-col space-y-3"  id="<%=element._doc._id%>">
+                <!-- here is for the sub comment   -->
+           <% if (element.reply.length !== null) { %>
+              <% element.reply.forEach(element => { %>
+                 <span class="bg-white rounded-lg p-1 w-fit ml-auto">
+                  <%= element.content %>
+                 </span>
+                 </span>
+              <% }) %>
+           <% } %>
+             </div>
+             <!-- for the input of the comment -->
+             <div class="reply-area 
+             mt-2
+            items-stretch
+            w-2/3                 
+            h-fit
+             flex flex-row 
+               text-center m-auto  p-1"> 
+                   <span 
+                   class="w-full bg-slate-600
+                   overflow-none
+                   h-full text-white outline-none
+                   rounded-md
+                   text-xl
+                   border-none
+                   placeholder-white 
+                    p-1  " 
+                   type="text" 
+                    contenteditable
+                     id="reply_content"
+                     >
+                     </span>
+              
+              
+                   <i id="reply_user_btn"  class="fa fa-paper-plane cursor-pointer
+                   rounded-md
+                    text-xl 
+                     text-gray-800
+                      w-fit
+                      h-fit
+                    p-2
+                     hover:bg-white
+                      duration-200" aria-hidden="true"></i>
+       
+                  
+            </div>
+      
+          </div>
+    
+
+            <div id="reply_<%=element._doc._id %>" class="one_reply 
+               flex-col space-y-3 h-fit hidden">
+            
+               <div class="replyS_ flex flex-col space-y-3"  id="<%=element._doc._id%>">
+                  <!-- here is for the sub comment   -->
+            
+               </div>
+               <!-- for the input of the comment -->
+               <div class="reply-area 
+               mt-2
+              items-stretch
+              w-2/3                 
+              h-fit
+               flex flex-row 
+                 text-center m-auto  p-1"> 
+                     <span 
+                     class="w-full bg-slate-600
+                     overflow-none
+                     h-full text-white outline-none
+                     rounded-md
+                     text-xl
+                     border-none
+                     placeholder-white 
+                      p-1  " 
+                     type="text" 
+                      contenteditable
+                       id="reply_content"
+                       >
+                       </span>
+                
+                        <!-- for the people -->
+                
+                     <i id="reply_user_btn"  class="fa fa-paper-plane cursor-pointer
+                     rounded-md
+                      text-xl 
+                       text-gray-800
+                        w-fit
+                        h-fit
+                      p-2
+                       hover:bg-white
+                        duration-200" aria-hidden="true"></i>
+         
+                    
+              </div>
+        
+            </div>
+      
+      
+      
+      
+          </div>
+<% }else{ %>
+   
+  <div class="bg-pink-200 w-fit text-center p-1
+h-fit
+relative 
+m-1
+flex
+flex-col
+rounded-md
+<% if (user.Userhandle === element._doc.currentUser.Userhandle) { %>
+<%="ml-auto"%>
+<% }else{ %>
+<%="mr-auto"%>
+   <% } %>
+rounded-bl-3xl">
+<img  class="w-14 h-19 rounded-lg" src="/<%=element.chat_content%>/chat_image" alt="">
+</div>
+ <% } %>
+ <% }) %>
+<% } %>
+<!-- this is for the comment  -->
+ 
+</div>
+   <!-- for send input ifled and the btn -->
+ 
+ 
+ 
+ <!-- thios is the text area which is  made up of the thing of the 
+  picture inseting 
+   the link injection 
+   -->
+   <div class="texting_area 
+      mt-2
+     items-stretch
+     w-2/3
+ bg-gray-400
+         relative
+      flex flex-row 
+        text-center m-auto  p-1"> 
+         
+       
+            
+            <span 
+            class="w-full bg-slate-600
+            overflow-none
+            file_input
+            h-auto text-white outline-none
+            rounded-full
+            border-none
+            placeholder-white first-letter:
+             p-3  " 
+            type="text" name="chat_conent"
+              id="comment_conent"
+              contenteditable
+              >
+
+         </span>
+
+              <label for="image_file">
+               <input type="file"  class="hidden" id="image_file" multiple>
+   
+    
+ <i
+ id="king_btn"
+  class=" 
+ top-1/2
+  -left-9
+   cursor-pointer
+  fas fa-link text-2xl
+  transform
+   -translate-x-1/2
+   -translate-y-1/2
+   text-yellow-300
+    absolute">
+</i>      
+</label>
+
+       
+         <span id="comment_user_btn" class="cursor-pointer
+          rounded-md
+           text-xl 
+            w-fit
+            h-fit
+            text-gray-800
+           p-2
+            hover:bg-white
+             duration-200
+             "> 
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          </span>
+           
+     </div>
+
+    
+   
+  </div>
+    
+    
+   </div>
+    </div>
+   <!-- htere is for the thing of the promt for the 
+   realy going to do the commenting and other
+     -->
+    
+     <%- include('../../Hope_nugget/Promp_snippet_chat.ejs') %>
+
+      
+      <script src="handle_display_image_file.js">
+      </script>
+       <script src="Draw_replay_thing.js"></script>
+<!-- for the overlay  -->
+ <script>
+
+//  here is going to be the firt check that is gooing ot be happening there whne there
+//  is a reload or fresh load of the page 
+let all_small_ball = document.querySelectorAll(".one_ball_here");
+window.addEventListener("load", ()=>{
+all_small_ball.forEach(element =>{
+//  get the last two
+ let of_king_current_ball = element.id.split("-")[3];
+ let the_current_s_pro_there = element.id.split("-")[4];
+  console.log(`${of_king_current_ball}-${the_current_s_pro_there}`)
+   if(of_king_current_ball === the_current_s_pro_there){
+   }else{
+ if(!element.classList.contains("hidden")){
+  element.classList.toggle("hidden")
+ }
+   }
+ })
+}
+)
+
+//  this wieldo function is for the displaying and undisplaying of image there 
+function zeloxo_gate(src_now){
+      all_small_ball.forEach(element=>{
+        //  so if your of kind is not 
+        //  eqaul to the one 
+        // which is currently there
+        //  in the system
+        //   then we are going to be making the thing here  do hide
+        
+ let  current_element_of_kind = element.id.split("-")[3]
+  
+          if(current_element_of_kind !== src_now){
+             
+             if(!element.classList.contains("hidden")){
+              element.classList.add("hidden")
+             }
+          }else{
+            if(element.classList.contains("hidden")){
+              element.classList.remove("hidden")
+             }
+          }
+      })
+     }
+// here is the thing of golden 
+   let show_hide_small_ball = document.querySelector(".show_hide_small_thing");
+
+//   here is refilling the thing there in the box of see or donot see
+ function refresh_what_there(re){
+//  for the eye thing there
+ if(re){
+  let icon_eye = document.createElement("i");
+    icon_eye.classList.add("fas","fa-eye")
+    icon_eye.id = "shower_hider"
+    show_hide_small_ball.innerHTML = ''
+     show_hide_small_ball.appendChild(icon_eye);
+
+ }else{
+     let icon_do_not_see = document.createElement("i");
+     icon_do_not_see.classList.add("fas","fa-eye-slash");
+     icon_do_not_see.id = "shower_hider"
+      show_hide_small_ball.innerHTML = ''
+     show_hide_small_ball.appendChild(icon_do_not_see);
+ }
+  }
+
+  //   so when there is a click there is a need to make the thing there 
+  //  which are not--- 
+  
+    
+    show_hide_small_ball.addEventListener("click",()=>{
+       
+  let shower_hider = document.querySelector("#shower_hider")
+       if(shower_hider.classList.contains("fa-eye")){
+         console.log("yes it conatine the thng")
+        refresh_what_there(false)
+       }else{
+        refresh_what_there(true)
+       }
+       
+       all_small_ball.forEach(element =>{
+if(!element.classList.contains("hidden")){
+  //  here is the point here
+  //  all big Guy come here
+   
+  
+   element.classList.toggle("hidden");
+}else{
+  let rea_deal_of_i  =document.getElementById("rea_deal_of_image");
+      let src_n = rea_deal_of_i.src;
+       let of_kind_n= src_n.split("/")[3];
+   let _real_deal_i  = of_kind_n.split("-")[1]
+  
+  //  this is the case where there is the thing which do contain hidden  but
+  //  it is not for the current picture that we are currenly viewing there
+  let the_current_of_kind = element.id.split("-")[3];
+// we are going to be gettting the scr thing of the current display thing there
+
+   
+   if(the_current_of_kind === _real_deal_i){
+    element.classList.toggle("hidden")
+    }
+ }
+ })
+    })
+
+    // here is for the thing of hideing the once which do not belong to
+    //   the current image there 
+
+  if(all_small_ball!==null){
+    all_small_ball.forEach(element=>{
+    //  here we setting each on possition
+     let element_where_X  =element.id.split("-")[0]
+     let element_where_Y  =element.id.split("-")[1]
+      //  for the id of thing there 
+      let element_id =element.id.split("-")[2]
+      
+      //  the adding of the eevent thta when
+      //  there is hover we are to display the thing 
+      //  there 
+       element.addEventListener("mouseenter",()=>{
+         document.getElementById(`realChat_${element_id}`).classList.toggle("hidden")
+       })
+
+        element.addEventListener("mouseleave",()=>{
+         document.getElementById(`realChat_${element_id}`).classList.toggle("hidden")
+       })
+
+      element.style.left = element_where_X;
+      element.style.top = element_where_Y;
+  })
+
+  }
+
+
+
+  //  here is the pojtn here the annotation is ffoing to be hadling
+  let rea_deal_of_image  =document.getElementById("rea_deal_of_image");
+   let mama = document.querySelector(".bean_mega");
+
+   let snippet_chat_promt = document.querySelector(".snippet_chat_promt");
+
+// here are the capabilities that this thing does in the back 
+ 
+ 
+let one_of_them  = document.querySelectorAll("#one_of_them");
+  //  when click we are going to be 
+  //   taking the src value and giving it to be the other
+   
+  //  for the previouse image
+   let pre_image = document.querySelector("#rea_deal_of_image");
+    
+
+     one_of_them.forEach(element=>{
+     element.addEventListener("click",(event)=>{
+    //  for the changing
+    refresh_what_there(true)
+    mama = document.querySelector(".bean_mega");
+      let src_now = event.target.src;
+       pre_image.setAttribute("src",src_now)
+       let of_kind_now = src_now.split("/")[3];
+   let _real_deal_image_  = of_kind_now.split("-")[1]
+zeloxo_gate(_real_deal_image_);
+
+   })
+     
+   })
+   
+     
+
+  
+ 
+ 
+ mama.addEventListener("click",(event)=>{
+
+  
+  //   for the elemnt 
+   let tonic = event.target.src.split("/")[3]
+    let golden   = tonic.split("-")[1]
+    //here it is going to be telling us wheathere it is a file one
+    // or the file other element 
+   
+      
+      console.log(golden);
+
+
+  let of_kind_there = 
+  event.target.getAttribute("src").split("/")[1];
+   let _real_deal_image_kind  = of_kind_there.split("-")[1]
+  overlay12.classList.toggle("hidden");
+  
+   snippet_chat_promt.classList.toggle("hidden")
+
+     
+  //  when there is a click on the snippet
+snippet_chat_promt.addEventListener("click",function(event_claso){
+  //  here if for the option chosen
+   let done_here_now = event_claso.target.innerText
+   if(done_here_now === "Yes"){
+       create_One(mama,event.offsetX,event.offsetY,"<%=S_Pro.id%>",
+       golden,"fault")
+       snippet_chat_promt.classList.toggle("hidden")
+     }else {
+       //  then it is beans
+       snippet_chat_promt.classList.toggle("hidden")
+       overlay12.classList.toggle("hidden")
+     }
+})
+  
+ })   
+ 
+ 
+
+    function scrol_btn(){
+          container_.scrollTop = container_.scrollHeight
+         }  
+window.onload = scrol_btn        
+// for the additon of the comment to 
+//  a specific part of the system
+ let array_reply_btn =Array.from(document.querySelectorAll("#reply_user_btn"));
+  
+   array_reply_btn.forEach(element=>{
+     element.addEventListener("click",(event)=>{
+      // element.firstElementChild
+        let parent_thing =  event.target.parentNode.parentNode.firstElementChild;
+        //  id of the current comment section 
+            let pacti_comment_id =  parent_thing.id
+        let parent_thing2 =  event.target.parentNode.firstElementChild.innerText;
+          // the content 
+           let content = parent_thing2;
+            
+            //  one single reply
+             let one = document.createElement("span")
+             one.classList.add("bg-white", "rounded-lg","p-1","w-fit","ml-auto")
+              one.innerText = content
+
+              //   thing to be sending
+               let id_current_comment = {
+                 content : content,
+                  pacticul_comment :pacti_comment_id
+               }
+
+          //   then appending it 
+           parent_thing.appendChild(one)
+            // the place of comment 
+            fetch(`/comment_now/all_repaly_for`,{
+                 method:"POST",
+                 headers :{ "Content-Type":'application/json'},
+                  body : JSON.stringify({content : id_current_comment})
+              })
+         
+              let pre =  parseInt(document.getElementById(`replynow_${pacti_comment_id}`).innerText)
+                //  setting it         
+                document.getElementById(`replynow_${pacti_comment_id}`).innerText = pre+=1
+                   
+               
+           event.target.parentNode.firstElementChild.innerText=""
+     })
+   })
+
+ 
+    let scoket = io(); 
+   
+      
+     
+     
+  // detection that the user is here
+  //  headaces hmmmm
+  let parent_like_dis  = Array.from( document.querySelectorAll(".L_D"));
+
+   
+ //   elmemnt need 
+  
+ let add_on = document.getElementById("king_btn");
+
+   
+      
+      
+the_input_file.addEventListener("change",function(event){
+  scrol_btn();
+  Preview_file(event.target.files,`<%=S_Pro._id%>_p`,"hope")        
+  scrol_btn();
+ 
+ }
+)
+
+// //  for the file drop down and other
+//   let file_drop_btn =  document.getElementById("file_drop_btn");
+//    let  file_stage = 
+//    document.getElementById("file_stage")
+//  file_drop_btn.addEventListener("click",function(){
+//      file_stage.classList.toggle("w-64");
+//  })
+
+
+//  here is the thing for the handling of the like 
+let like_btn = document.getElementsByClassName("like_btn");      
+
+socket.on("someone_liked",(data)=>{
+        //  get the id 
+         let pacticular =  document.getElementById(`Number-${data.like_id}`);
+          //  then setting the value in there
+            pacticular.innerText = data.number_like
+      })
+      Array.prototype.forEach.call(like_btn,(element)=>{
+// for each we are to make them join a ro
+    //  here is for the for each of he thing 
+    element.addEventListener("click",(event)=>{
+         let tageted =  event.target.tagName
+         
+
+        if(tageted ===  "I"){  // checking if it is like it btn 
+
+          let id_post = event.target.id;
+          //  getting the current value of the like in the place
+ let no_likes = parseInt(document.getElementById(`Number-${id_post}`).innerText.replace(/\s/g,''))
+
+
+
+          //  making the fectch require
+            fetch(`/setting/u/like_it/?post_id=${id_post}`).then(
+               res=>{
+                   res.json().then(
+                     outcome =>{
+                        // here is for the responce
+                       
+                    if(outcome.result){
+        //   we are going to be updating all the 
+        let info_like  = { 
+           like_id   : id_post,
+          number_like :no_likes+=1
+        }
+      
+         socket.emit("new_like_value",info_like);
+
+         
+                 
+       }else{
+ //   we are going to be updating all the 
+ let info_like  = { 
+           like_id   : id_post,
+          number_like :no_likes+=-1
+        }
+      
+         socket.emit("new_like_value",info_like);
+
+                }
+                     }
+                   )
+                 
+                }
+               )
+
+        
+        
+        
+        }
+         
+      })
+      
+ 
+
+   })
+       
+
+
+  
+     
+  // seting up a new connection 
+        // input_content
+ let comment_content = document.getElementById("comment_conent")
+//   for the send_btn 
+ let comment_user_btn = document.getElementById("comment_user_btn");
+ let now_comment_id;
+ comment_user_btn.addEventListener("click",()=>{
+    
+  //  here is show wherther the usrent user is therer
+
+  //   for the sending of the info
+    let content = comment_content.innerText;
+    if(content !== ""){
+     
+      //  sending the info
+      //  here is the case where befoe the 
+      //  emiting of the comment we are going to be sending it into the btn 
+       fetch("/comment_now/one_comment/p",{
+           method :"POST",
+            headers : {'Content-Type':"application/json"},
+            body : JSON.stringify({comment : content,proto_id : '<%=S_Pro._id%>'})
+        }).then(
+          res =>{ res.json().then(
+            outcome =>{
+                 now_comment_id = outcome.id
+                   //   one_comment_structure
+       let structure_content = {
+           proto_id : '<%=S_Pro._id%>',
+           content  : content,
+            id : now_comment_id
+       }  
+        // checking there is an element haveing athe classname current comment
+                let current_replay =document.querySelector(".current_replay");
+
+        //  if(current_replay){
+        //    let span_replay = document.createElement("span");
+ 
+        //     span_replay.innerText = content
+        //                 // additoon of styling
+        //                 span_replay.classList.add("bg-white", "rounded-lg","p-1","w-fit","ml-auto")
+        //    current_replay.appendChild(span_replay)
+        //  }
+        
+      scoket.emit("comment_here",structure_content);
+              }
+          )}
+        )
+    }
+   
+ })
+ 
+
+
+ let container_ = document.getElementById("<%=S_Pro._id%>now");
+          // for the automatic scrolling to the btn 
+    
+            
+         
+//   when we do receive the comment
+ scoket.on(`<%=S_Pro._id%>now`,(data)=>{
+    //  in here we are listening for all the hit to this id
+     if(container_){
+      // for the other rapper
+       let  div_one = document.createElement("div")
+       let m_type
+         if('<%=user._id%>' ==='<%=S_Pro.currentUser.id%>'){
+           m_type  = "ml-auto";
+        }else{
+           m_type = "mr-auto";
+        }
+         div_one.classList.add("bg-pink-200",
+          m_type,
+         "text-center","h-fit","w-fit","p-2","m-1","rounded-md","rounded-bl-3xl")
+  
+          // here is for the decition of wheather the action is the 
+          //   for the user or othere
+           
+ let a_link = document.createElement("a");
+  a_link.href = "/<%=user.Userhandle%>";
+
+   
+
+   
+
+ 
+         //  for the other span and other
+   let span_one = document.createElement("span");
+    span_one.classList.add
+    ("text-xs",
+   "flex",
+   "w-full",
+   "items-start")
+          
+
+    // for the image 
+     let img= document.createElement("img");
+       img.classList.add("w-7","h-7","rounded-full")
+      
+      //  getting the user profile or handle
+        let may_be_userprofile = '<%=user.userProfile%>';
+  
+          var src;
+      if(may_be_userprofile === ''){
+   src = "/Default-Profile.png"
+              }else{
+                 src = `userProfile/${may_be_userprofile}`
+              }
+// setting the img variable 
+            img.src =src
+
+
+            
+             
+// creating the span 
+  let span_  =document.createElement("span");
+   span_.classList.add("font-semibold")
+    span_.innerText = '<%= user.Userhandle %>'
+ 
+             
+              span_one.appendChild(img)
+             span_one.appendChild(span_)
+             a_link.appendChild(span_one); // this is under the atag
+             div_one.appendChild(a_link)
+             parent_like_dis  = Array.from( document.querySelectorAll(".L_D"));
+
+             //  creating of the holder
+      let span_single_element = document.createElement("span");
+        // adding of cool_thing
+          span_single_element.classList.add(
+            "text-black",
+               "font-sans",
+                "text-sm",
+                "w-40",
+                 "h-fit",
+              "rounded-md")
+              // for the like and this like thing
+                let span_wrapper_likes = document.createElement("span")
+                // it styling 
+                  span_wrapper_likes.classList.add( "w-fit","m-auto","rounded-md","like_displike")
+              //   for the thums
+                let thums_now = document.createElement("i");
+                thums_now.id =`LIKE_${data.id}`
+                //  it styling 
+                 thums_now.classList.add(
+                  "text-sm","bg-green-400",
+                  "rounded-lg",
+                  "L_D","fas",
+                  "p-1",
+                  "text-white",
+                  "fa-thumbs-up","cursor-pointer","m-1")
+                //   for the thing to represent the number
+                 let small_rep = document.createElement("small");
+                  
+                  // for the styling
+                   small_rep.classList.add("like")
+                    small_rep.innerText = 0
+
+                  //   for the dislike section
+                    let dislike = document.createElement("i");
+                     dislike.setAttribute("id",`DISLIKE_${data.id}`)
+                    //  for it styling
+                     dislike.classList.add(
+                  "text-sm","bg-red-400",
+                  "rounded-lg",
+                  "L_D","fas",
+                  "p-1",
+                  "text-white",
+                  "fa-thumbs-up","cursor-pointer","m-1")
+                      // for the small -representation of the number
+                       let dislike_number =document.createElement("small");
+                        
+                        dislike_number.innerText = 0;
+                       dislike_number.classList.add("dislike")
+
+                        // here is for like appneding 
+                         thums_now.appendChild(small_rep);
+
+                        //   for the dislike
+                         dislike.appendChild(dislike_number);
+
+                        //  addition of the two of them 
+                         span_wrapper_likes.appendChild(thums_now);
+                         span_wrapper_likes.appendChild(dislike);
+
+
+       
+      //  ading of the content
+       span_single_element.innerText = data.content;
+      //  if it is there in the dom
+         div_one.appendChild(span_single_element);
+         div_one.appendChild(span_wrapper_likes);
+          
+       container_.append(div_one);
+       scrol_btn()
+       // then clearing of the input_section 
+         comment_content.innerText = "";
+     }
+    //  there is a use of scoll higher
+ })
+      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ //   for the three bot and othere
+      let three_bot =  document.querySelector(".three_dot")
+      //   form the  three_bot form
+       let bot_form = document.getElementById("three_bot_form")
+//  for the display of the overlay 
+   let overlay_three_dot = document.querySelector(".overlay");
+   
+        // for the display of the other options
+    three_bot.addEventListener("click",function(){
+          
+      
+
+
+        bot_form.classList.add("flex")
+      bot_form.classList.toggle("hidden");
+      overlay_three_dot.classList.toggle("hidden");
+    })
+    overlay_three_dot.addEventListener("click",()=>{
+       if(!bot_form.classList.contains("hidden")){
+         bot_form.classList.add("hidden")
+          
+       }
+
+    
+
+       
+    })
+     bot_form.addEventListener("click",(event)=>{
+    //   when the name of the tag is the A tag then we are going to be toggel the 
+     if(event.target.tagName === "A"){
+      bot_form.classList.toggle("hidden");
+     }
+     })
+
+
+
+
+     
+     
+ let edit_btn = document.getElementById("edit_btn")
+  //  for the tracking wheather we are in the form zone 
+   let inthere_edtting;
+  //  thing to change 
+   let title = document.getElementById("title");
+    
+   let  real_content ;
+      let value_previous =[];
+
+  edit_btn.addEventListener("click",()=>{
+  // here there is going to be a redirection to a new page
+   window.location.href = `/setting/u/edit/?proto_id=<%=S_Pro.id%>`;
+})
+
+
+ 
+ 
+let real_three = document.getElementById("real-three-btn");
+ 
+
+
+
+
+
+     let deletebtn =  document.querySelector(".delete_btn");
+      let prompt_delete = document.querySelector(".prompt_delete");
+      //  Now showing it 
+     
+       deletebtn.addEventListener("click",()=>{
+           prompt_delete.classList.add("flex","transform");
+             prompt_delete.classList.toggle("hidden");
+
+          })
+
+            prompt_delete.addEventListener("click",(event)=>{
+                let target_action = event.target.innerText
+                 
+                 if(target_action === "Yes"  ){
+                    prompt_delete.classList.toggle("hidden");
+                   fetch(`/setting/u/delete/`,{
+                     method : "POST",
+                     headers : {"Content-Type":"application/json"},
+                     body : JSON.stringify({proto_id : '<%=S_Pro.id%>'})
+                   }).then( 
+                    
+                     res=> {
+                       if(res.redirected){
+                         window.location.href = res.url
+                       }else{
+                        //  for the json thing 
+                       }
+                     }               
+                   
+                   )
+
+               }else{
+                //   when we are dealing with the other thing of 
+                // the the user press the cancel deten
+                prompt_delete.classList.toggle("hidden");
+                 overlay_three_dot.classList.add("hidden")
+
+               }
+            })
+
+            
+            overlay_three_dot.addEventListener("click",()=>{
+       if(!prompt_delete.classList.contains("hidden")){
+         prompt_delete.classList.add("hidden")
+                          }
+                        })
+
+
+                         
+
+      
+
+                      
+                        // <!-- for the handling of the like of comment -->
+
+  parent_like_dis.forEach(element =>{
+    element.addEventListener("click",(event)=>{
+      let id_of_hitted = event.target.id
+      //  the real deal 
+       let deal = id_of_hitted.split("_")[0].replace(/\s/g,'')
+       let deal2 = id_of_hitted.split("_")[1].replace(/\s/g,'')
+    //   here is doing of the fetch to see if it 
+    //  a ---new like
+    //  a ---- change of decision o like
+    //  a ---- rewanting to like again  
+     if(deal === "LIKE" || deal === "DISLIKE"){
+        // getting the need info 
+         let mega = {
+                action  :id_of_hitted
+         }
+          fetch(`/comment_now/action_on_comment`,{
+             method:"POST",
+             headers  :{"Content-Type" :  "application/json"},
+              body : JSON.stringify(mega)
+          }).then(
+             res =>{
+                 res.json().then(
+                done =>{
+if (done.result) {
+    
+   document.getElementById(`LIKE_${deal2}`).innerText =done.like
+   document.getElementById(`DISLIKE_${deal2}`).innerText =done.dislike
+   
+}else{
+}              }
+                 )
+             }
+          )
+     }
+ })
+  })
+              
+
+//  this is for the case where the user clike on the 
+//   replay of a  comment
+  
+let reply_btn = Array.from(document.querySelectorAll(".reply_btn"));
+//  addding of the eventlis
+reply_btn.forEach(element =>{
+
+    element.addEventListener("click",(event)=>{
+      //  make all that are having the m-auto to go back to thier postion
+     reply_btn = Array.from(document.querySelectorAll(".reply_btn"));
+        reply_btn.forEach(element =>{
+           if(element.parentNode.parentNode.classList.contains("m-auto") 
+          &&  element.parentNode.parentNode.classList.contains("ml-auto") ){
+             element.parentNode.parentNode.classList.remove("m-auto")
+             element.parentNode.parentNode.classList.add("ml-auto")
+             element.parentNode.parentNode.classList.toggle("w-full")
+             
+
+           }else if(element.parentNode.parentNode.classList.contains("m-auto") 
+          &&  element.parentNode.parentNode.classList.contains("mr-auto") ){
+             element.parentNode.parentNode.classList.remove("m-auto")
+             element.parentNode.parentNode.classList.add("mr-auto")
+             element.parentNode.parentNode.classList.toggle("w-full")
+             
+
+           }
+           
+        })
+          //  for the current element
+       let Parent_cu_T = event.target.parentNode.parentNode
+      //   geting the id
+       let id_current_comment = element.id.split("_")[1];
+        // makng it come to the center
+                element.parentNode.parentNode.classList.toggle("m-auto");
+                element.parentNode.parentNode.classList.add("bg-blue-200");
+                element.parentNode.parentNode.classList.toggle("h-12");
+                element.parentNode.parentNode.classList.add("current_replay");
+                element.parentNode.parentNode.classList.toggle("w-full");    
+                
+                //   showing it corresponding staff
+                  let it_id = event.target.id.split("_")[1];
+                  //  find the specific aread
+                    let specific_area_reply = document.getElementById(`reply_${it_id}`)
+                       specific_area_reply.classList.toggle("hidden");
+                       element.parentNode.parentNode.classList.remove("w-full")
+                       element.parentNode.parentNode.classList.toggle("m-auto")
+                          element.parentNode.parentNode.classList.add("w-fit")
+                       
+                        // for a case where the thing is going to be click agia
+                         
+                       
+   
+                        
+
+      
+         
+  })
+})          
+
+
+   </script>
+       
+        

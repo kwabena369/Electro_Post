@@ -1,0 +1,50 @@
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+
+     <button id="golden"> PLAY</button>
+     <% if (locals.pathMusic !== null) { %>
+        <audio controls>
+          <source src=" <%=pathMusic%>/sound" type="audio/mpeg">
+             </audio> 
+     <% } %>
+</div>
+<!-- 
+<script>
+      async function gola(){
+           
+
+      const audio  = new AudioContext();
+     //   here we are going to be geting to the sound
+      const soundNode = audio.createBufferSource();
+     //   here to connect to the speaker
+      soundNode.connect(audio.destination);
+     //  here fetching it 
+       const audofile = await fetch("Here.mp3/sound").then(res =>
+           res.arrayBuffer()
+       )
+     //    decoding the file
+      const decodedfile =  await audio.decodeAudioData(audofile);
+     //    setting the buufer
+        soundNode.buffer = decodedfile;
+         soundNode.start();
+      }
+      gola()
+       
+       const btn = document.getElementById("golden");
+       btn.addEventListener("click",()=>{
+           gola();
+       })
+          
+</script> -->

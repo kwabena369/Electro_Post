@@ -1,0 +1,550 @@
+<!-- for the overlay  -->
+<script>
+   
+</script> 
+
+
+<%- include('../overlay.ejs') %>
+
+   
+  <!--  for the form --> 
+     <%- include('education_form.ejs') %>
+     <%- include('Employment.ejs') %>
+
+      <!--  boring ching of the id_if ther  -->
+
+
+
+     <% if (typeof user_ !== null && typeof user_ !== 'undefined') { %>  
+ 
+   
+
+       <!-- this is an outside thiing it 
+         panel for the showing of the
+        thing that the person has done  -->
+ <span
+  id="did_what_panel"
+  class="hidden bg-black w-fit p-4
+   rounded-md 
+   text-white
+    font-serif
+     text-sm
+    did_what_panel
+    text-center
+     fixed
+     z-50
+      top-1/2
+      left-1/2
+       transform
+      -translate-x-1/2
+       -translate-y-1/2"> 
+      
+ </span>       
+ 
+ 
+      <div class="
+  user_static
+     w-full
+     grid
+ "style=
+ "grid-template-columns: auto  ;
+     grid-template-rows:auto 4px 5px 5px">
+
+<div class="bg-yellow-50
+ text-black
+h-fit
+rounded-lg
+w-full 
+  m-2 p-2 text-center ">
+    
+   <!--  for the kind the person wnat  -->
+     <span class="w-fit bg-red-400 p-2 text-2xl text-center
+      flex 
+      m-auto
+      flex-row
+     ">
+      <small id="education_show_btn" class="bg-green-300 p-2 cursor-pointer rounded-md"> Education Info</small>
+      <small id="employment_show_btn" class="bg-green-300 cursor-pointer p-2 rounded-md"> Emplyment Info</small>
+     </span>
+   
+  <div  id="parent_decider"
+  class="flex flex-col space-x-2" style="grid-column-start: 3;"> 
+  <% if ( typeof educationNow !== null && typeof educationNow !== 'undefined' ) { %>
+     <!-- since there can be more education we use foreach -->
+   <% educationNow.forEach(element => { %>
+    <div id="education_Now" class="
+     border-white 
+     border-2 border-solid"> 
+      <div class="name_option m-3 flex flex-row justify-between items-center"> 
+     <span class="text-2xl font-medium"> 
+       
+         <%= element.Sch_Name%>
+        </span>
+ 
+          <a 
+       href="/setting/u/edit_didwhat/?sch_name=<%=element.Sch_Name%>"
+      class="bg-blue-600 p-3 rounded-md text-black">Edit</a>
+      </div>
+         
+        <div class="thing_did bg-blue-500 w-fit 
+        p-4 rounded-lg m-1 flex flex-col text-xl">
+           
+      <% if (element.thing_did !== null && element.thing_did !== 'undefined'){ %>
+       <% element.thing_did.forEach(element => { %>
+         <span>
+           <%= element.Name%>
+         </span>
+       <% }) %>
+      <% } %>
+    </div>
+       
+    </div>
+    
+    
+   <% }) %>
+  <% } %>
+</div>
+<!-- for the employment -->
+<div  id="parent_decider2"
+class="flex flex-col space-x-2" style="grid-column-start: 3;"> 
+<% if ( typeof employment !== null && typeof employment !== 'undefined' ) { %>
+   <!-- since there can be more education we use foreach -->
+ <% employment.forEach(element => { %>
+  <div id="education_Now" class="
+   border-white 
+   border-2 border-solid"> 
+    <div class="name_option m-3 flex flex-row justify-between items-center"> 
+   <span class="text-2xl font-medium bg-red-400"> 
+       <%= element.Name_Position%>
+      </span>
+
+        <a 
+     href="/setting/u/edit_didwhat/?sch_name=<%=element.Name_Position%>"
+    class="bg-blue-600 p-3 rounded-md text-black">Edit</a>
+    </div>
+       
+      <div class="thing_did bg-blue-500 w-fit 
+      p-4 rounded-lg m-1 flex flex-col text-xl">
+       form : <%= element.From %>___ to : <%= element.To%>
+  </div>
+     
+  </div>
+  
+  
+ <% }) %>
+<% } %>
+</div>
+
+
+</div>
+
+
+
+  <div class="
+  personal-info
+   row-span-full
+    grid 
+bg-pink-400
+    rounded-lg
+     text-white
+      text-2xl
+    w-full
+     m-auto"
+
+    style="grid-template-columns: auto 1fr;
+            grid-template-rows:auto 1fr;
+      "
+    >
+
+<!--  here for the addition of the credential -->
+ 
+  
+ <div class=" flex flex-row justify-center " style="grid-area: 1/1/2/auto;">
+
+
+    <span
+  class="text-center
+   p-3
+  ">
+    <img src="
+    <% if (user_.userProfile !== "") { %>
+      userProfile/<%= user_.userProfile %>
+    <% } else{%>
+     <%="/Default-Profile.png "%>
+     <% } %>
+  "
+    id="toper"
+   class="
+   inline
+    rounded-s-full
+     m-1
+     
+      w-20" alt="">
+     </span>
+   
+     <span
+   id="handle_holder"
+   class="
+    text-xl
+    m-1 p-1">
+    <%= user_.Userhandle %>
+   </span>
+    
+    <!-- for reputation  -->
+    
+ </div>
+      
+
+ <div class="reputtion flex flex-row p-4 "
+ style="grid-area: 2/1/2/auto;">
+   <span class="flex flex-row 
+  row-span-full
+   justify-evenly
+ ,   
+ bg-gray-950 w-full
+  p-10
+  rounded-lg
+   items-center
+   text-2xl  m-1">
+    <span class="contribution cursor-pointer bg-blue-400 text-center w-10 h-10 rounded-lg">
+    <i class="fas fa-chart-line"></i>
+     <small>122</small>
+  </span>
+  <span class="wise_advice bg-blue-400  cursor-pointer text-center w-10 h-10 rounded-lg">
+    <i class="fas fa-star"></i>
+      <small>1k</small>
+  </span>
+           </span>
+
+ </div>
+
+    <!--  under herer we do output the education name -->
+   
+
+
+     
+    <!-- this is going to be the last thing at other side left -->
+<%- include('Credential.ejs') %>
+   </div> 
+
+  <!--  all the user psot -->
+        <div
+    class="bg-none"style="grid-area: auto/1/auto/2;" >
+
+    
+
+          <!-- here is going to be the Project which are in the db -->
+<% if (typeof prototypes !== null && typeof prototypes !=='undefined') { %>
+    <% prototypes.forEach(element => { %>
+      <div
+      class="
+       flex
+       flex-col
+      oneProject
+       box-border
+        border-2
+        p-3 bg-slate-300
+
+         
+       w-4/5
+       mt-6
+       mb-4
+       rounded-lg
+       ">
+     
+
+       <!--  for the user info -->
+<!-- information about the user -->
+<div class="userinfo
+w-full
+flex
+m-0
+relative
+  rounded-tr-full
+  text-black
+  font-serif
+   ">
+ <span  class="
+ userprofile 
+   text-xs
+   flex
+   w-full
+   items-end
+   "> 
+   
+  <img
+   class="
+   w-11
+   h-11
+   rounded-full
+     "
+  src="<% if (user_.userProfile !== ""){ %> userProfile/<%=user_.userProfile %> <% } else{%><%="/Default-Profile.png "%><% } %>"
+  >
+ <span class="handlename
+ ">
+  <a href=" /<%=user_.Userhandle%>">
+   <%= user_.Userhandle %>
+   </a>
+   <br> 
+     <small> the best is wet to come</small>
+      <%= element._tag_array%>
+</span>
+ </span>
+</div>
+
+<!-- for the tile -->
+<div class="title">
+ <span
+ class=" m-2 font-sans font-semibold">
+<%= element.protypeName %>
+</span>
+</div>
+
+
+<div id="actual_preview" class="actual-preview 
+">
+     <a class="single_pp" href='/prototype/one_now/?proto_id=<%=element._id%>'> 
+     
+      <!-- here is the checking
+        wheather it is img of vedio -->
+     <% if (element.pp.split('.')[1] === "mp4") { %>
+      <video src="/<%=element.pp%>/p" class="rounded-lg" controls></video>
+     <% } else{%>
+<img
+class=" w-full
+ rounded-lg
+h-32
+m-0" src="/<%=element.pp%>/p" alt="no image">
+     <% } %>
+
+</a>
+
+<div class="some_infors  mt-1 rounded-lg m-auto
+bg-gray-800 flex flex-row items-center space-x-1 justify-center">
+      <div class="time_passed
+       flex flex-row items-center
+        text-white rounded-lg 
+        w-full
+        justify-between p-1 ">
+
+        
+<% let date_then  = new Date(element.dateCreated) %>   
+<% let date_now = new Date() %>     
+<% let difference_millisec =  date_now - date_then %>     
+<% let Number_second  = Math.floor((difference_millisec)/1000) %>     
+<% let Number_minute  = Math.floor((difference_millisec)/(1000*60)) %>     
+<% let Number_hours  = Math.floor((difference_millisec)/(1000*60*60)) %>     
+<% let Number_day  = Math.floor((difference_millisec)/(1000*60*60*24)) %>     
+<% let Number_week  = Math.floor((difference_millisec)/(1000*60*60*24*7)) %>     
+<% let Number_month  = Math.floor((difference_millisec)/(1000*60*60*24*7*30)) %>     
+<% let Number_year  = Math.floor((difference_millisec)/(1000*60*60*24*7*30*365)) %>     
+<!-- making use of the  -->
+
+ <% let time_passed; %>
+ 
+<span class="time font-serif text-xl">
+    <% if (Number_second <60) { %>
+        <% time_passed = Number_second+" s ago"%>
+        <%= time_passed %>
+    <% }else if(Number_minute>0 && Number_minute <60){ %>
+      <% time_passed = Number_minute+" m ago"%>
+      <%= time_passed %>
+       <% }else if(Number_hours>0 && Number_hours < 24){%>
+      <% time_passed = Number_hours+" h ago"%>
+        <%= time_passed %>
+         <% }else if(Number_day>0 && Number_day <7){%>
+          <% time_passed = Number_day+" day ago"%>
+          <%= time_passed %>
+            <% }else if(Number_week >0 && Number_week < 6){ %>
+          <% time_passed = Number_week+" week ago" %>
+          <%= time_passed %>
+               <% }else if(Number_month>0&&Number_month <12){ %>
+          <% time_passed = Number_month+" month ago"%>
+           <%= time_passed %>
+                 <% }else if(Number_year>0){%>
+          <% time_passed = Number_year+" year ago"%>
+                       <%= time_passed %>
+                   <% } %>
+                 </span>
+
+
+                    
+  <span id="like_wrapper" class="flex
+   flex-row 
+  w-fit  rounded-lg
+  border-2 
+   bg-gray-800
+  border-solid
+   border-red-500
+  p-2
+    justify-start m-auto">
+    <i id='<%=element.id%>'
+      class="fas fa-heart text-white
+       cursor-pointer
+      
+        like_btn p-1
+        text-sm
+         ">
+     <span id="Number-<%=element.id%>"
+        class="text-sm">
+        <%= element.Number_likes %>
+     </span>
+   </i>
+
+       <!-- for the comment section  -->
+      
+      <i class ="
+      fas fa-comment  
+      text-white
+      cursor-pointer
+       like_btn p-1
+       text-sm">
+         <span id="Another_Comment<%=element.id%>" 
+           class="text-sm"><%= element._Number_Comment %></span>
+      </i>
+
+  </span>
+   
+   <!-- here is for the number of view -->
+
+   <span id="viewer flex flex-row">
+     <i class="fas fa-eye"></i>
+      <!--  the real deal -->
+      <small
+       class="text-2xl font-sans"><%= element._Number_View%></small> viewer
+ </span>
+  
+  
+  <!-- then you would need to output it using the  -->
+ </div>
+
+
+
+ 
+           <span> 
+ <div class="stack-image flex
+ items-center
+  text-fuchsia-400
+   text-2xl
+         flex-row ">
+  <% if (element._arraypp.length>1) { %>
+   <a  href='/prototype/one_now/?proto_id=<%=element._id%>'> 
+   +<%=element._arraypp.length-1%>
+    </a>
+  
+    <% } %>
+</div>
+</span>
+ </div>
+          </div>
+
+
+
+
+
+    </div>
+      
+       
+    <% }) %>
+<% }else{ %>
+ 
+    <div class="bg-red-500
+     ">
+       Hope
+    </div>
+    <% } %>
+  </div>
+    </div> 
+<% } %>
+
+
+
+
+
+     <script>
+
+
+
+ let Education = document.querySelector(".Educa-form");
+ let btn_parent = document.getElementById("btns-creden");
+  
+ let Employment = document.querySelector(".Employ-form");
+
+  // here there  
+    
+  
+    
+   
+  //  did_what_panel
+   let did_what_panel  = document.getElementById("did_what_panel")
+  let kindBee  = document.querySelector(".kindBee")
+   overlay.addEventListener("click",()=>{
+if (!Education.classList.contains("hidden")) {
+  Education.classList.toggle("hidden");
+}else if(!Employment.classList.contains("hidden")){
+   Employment.classList.toggle("hidden");
+}             
+ })
+
+ btn_parent.addEventListener("click",(event)=>{
+    let which_btn = event.target.id
+ 
+     console.log(which_btn);
+     if(which_btn !== null){
+      
+       overlay.classList.toggle("hidden")
+       switch (which_btn) {
+        case 'btn-education':
+           Education.classList.toggle("hidden");
+            Education.classList.add("flex")
+              //  here is the animation
+           setTimeout(()=>{
+             Education.classList.add(
+"top-1/2" ,"left-1/2",
+  "transform",
+  "-translate-x-1/2",
+   "-translate-y-1/2",
+   "sm:top-1/4",
+    "sm:left-1/4",
+    "sm:-translate-x-0",
+    "sm:-translate-y-0")
+           },400) 
+          break;
+          //  for other case 
+
+
+          case'btn-display': 
+          Employment.classList.toggle("hidden");
+            Employment.classList.add("flex")
+              //  here is the animation
+           setTimeout(()=>{
+             Employment.classList.add(
+"top-1/2" ,"left-1/2",
+  "transform",
+  "-translate-x-1/2",
+   "-translate-y-1/2",
+   "sm:top-1/4",
+    "sm:left-1/4",
+    "sm:-translate-x-0",
+    "sm:-translate-y-0")
+           },400) 
+            break;
+           
+        default:
+          break;
+       }
+      
+       
+     } 
+ })
+   
+
+// for the rendering of the choose of thing there
+ let employment_show_btn = document.getElementById("employment_show_btn");
+ let education_show_btn = document.getElementById("education_show_btn");
+  
+  employment_show_btn.addEventListener("click",()=>{
+    //   changing to property of the other thing 
+  })
+
+</script>

@@ -1,0 +1,41 @@
+
+ <div class="wrapper-dosomething"> 
+      <div class="nothing_image"> 
+          <span>
+             Do Something
+          </span>
+      </div>
+
+       <!-- for the btn for the doing of the something and other -->
+      
+        <div class="btn-nothing">
+            <span 
+            id="post_do_thing" class="show_proto cursor-pointer bg-blue-500 p-3 rounded-md text-center">
+                Post Proto
+            </span> 
+            <!--  for the fault -->
+            <span class="show_proto cursor-pointer bg-blue-500 p-3 rounded-md text-center">
+                Post fault
+             </span>
+              
+               
+        </div>
+        
+ </div>
+  <script>
+      let post_do_thing = document.getElementById("post_do_thing");
+       post_do_thing.addEventListener("click",()=>{
+        p_form.classList.toggle("hidden");  
+           overlay.classList.toggle("hidden");  
+       })
+
+       p_form.classList.toggle("hidden");  
+overlay.classList.toggle("hidden");  
+ overlay.addEventListener("click",()=>{
+          if(p_form.classList.contains("hidden")){}
+          else{
+              p_form.classList.toggle("hidden")
+          }
+  }) 
+       
+  </script>

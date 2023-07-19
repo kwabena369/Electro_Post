@@ -1,0 +1,23 @@
+<!--  here is the place where it a  form for the editing of the  user data -->
+<!-- <link rel="stylesheet" href="style.css"> -->
+
+  
+ 
+ 
+
+
+<div class="edit-wrapper">
+     <div class="inputform">
+           <h1> Editing Self</h1>
+         
+           <% if (locals.user !== null) { %>
+         <form action="/user/<%= user._id%>/edit" method="post">
+            <div class="input-section"> 
+                 <input type="text" name="StageName" value="  <%= user.StageName  %>  ">
+                 <label for="">StageName</label>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+        <% } %>
+     </div>
+</div>

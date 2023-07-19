@@ -1,0 +1,45 @@
+
+ <!-- all the once with the not checked are displayed here -->
+  <div class="warpper_all_noti
+   flex flex-col">
+    <!--  this is going to be the row of
+       the prototype and the number 
+        of coment 
+       in there whuich are new 
+     -->
+   <% if (typeof list  !==null && typeof list !== 'undefined') { %>
+    <% list.forEach(element => { %>
+      <!-- /<%=element.pp%>/p -->
+       <a
+         
+        href="/prototype/one_now/?proto_id=<%=element.user_Proto_info._id%>&&form_noti=true">
+          <!-- this is going to lead to the specific protoype -->
+     <div class="
+     bg-white
+       text-center
+       border-2
+      border-solid
+       rounded-lg 
+       flex
+        w-fit
+         items-center
+         justify-between 
+        flex-row 
+       m-1">
+          <img class="w-11 h-11 rounded-full" src="/<%=element.user_Proto_info.pp%>/p" alt="NO IMAGE">
+     <span> 
+        <%=element.user_Proto_info.protypeName%>
+     </span>
+      <!-- for the numbnert of the comment new -->
+        <small class="bg-red-500 
+         ml-4
+          text-center
+          w-10 rounded-full font-sans h-10 p-3" >
+           <%= element.Number_Of_new %>
+        </small>    
+       
+          </div>
+       </a>
+    <% }) %>
+   <% } %>
+</div>

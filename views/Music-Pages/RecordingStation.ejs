@@ -1,0 +1,66 @@
+<!-- Recording station  -->
+<div>
+  <h1>Audio Recorder</h1>
+  <button onclick="startRecording()">Start Recording</button>
+  <button onclick="stopRecording()">Stop Recording</button>
+  <audio id="recordedAudio" controls></audio>
+  <!-- this are the thing for the btn  -->
+  <a href="" id="ghosted"> Glode</a>    
+ <!-- up  there is the btn which the user is going to clk on 
+ for the downloading after the modification -->
+ </div>
+    
+  <script>
+    let audioChunks = [];    // for storing                            // the audio data contents
+    let mediaRecorder;
+    let recordedAudio = document.getElementById("recordedAudio");
+     let cleanghost = document.getElementById("cleanghost")
+    var audioBlob;
+    function startRecording() {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+          mediaRecorder = new MediaRecorder(stream);
+          mediaRecorder.addEventListener("dataavailable", function(event) {
+            audioChunks.push(event.data);
+          });
+
+          mediaRecorder.addEventListener("stop", function() {
+            var audioBlob = new Blob(audioChunks,{type : "audio/mpeg"});
+            const audioUrl = URL.createObjectURL(audioBlob);
+            recordedAudio.src = audioUrl;
+            let ghosted  = document.getElementById("ghosted");
+             ghosted.setAttribute("href",audioUrl); 
+           ghosted.addEventListener("click",()=>{
+               sendAudio(audioBlob);
+              //   this thing is going to be sending the data
+           })
+            });
+
+
+
+          mediaRecorder.start();
+        });
+    }
+    function stopRecording() {
+      mediaRecorder.stop();
+    }
+    function playRecording() {
+      recordedAudio.play();
+    }
+
+//  here is the function for sending the audio data
+function sendAudio(audioBlob){
+const formData = new FormData();
+      formData.append('audio', audioBlob, 'recordig.mp3');
+      fetch('/music/rec/up', {
+  method: 'POST',
+  body: formData
+}).then(response => {
+  console.log('Audio uploaded successfully.');
+}).catch(error => {
+  console.error(error);
+});
+}
+//   here is the function for the sending  of the audio file
+  </script>
+

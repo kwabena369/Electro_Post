@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Record and Combine Audio</title>
+</head>
+<body>
+  <button id="record-btn">Record</button>
+  <button id="stop-btn" disabled>Stop</button>
+</body>
+</html>
+
+<script>
+const audioCtx = new AudioContext();
+const bufferSize = 2048;
+let musicBuffer, musicSourceNode;
+let microphoneStream, microphoneSourceNode, scriptNode;
+
+const recordBtn = document.getElementById('record-btn');
+const stopBtn = document.getElementById('stop-btn');
+
+recordBtn.addEventListener('click', startRecording);
+stopBtn.addEventListener('click', stopRecording);
+
+// Load the music track and save it to a global variable
+async function loadMusicTrack(url) {
+  try {
+    const audioData = await fetch(url).then(res => res.arrayBuffer());
+    const buffer = await audioCtx.decodeAudioData(audioData);
+    musicBuffer = buffer;
+  } catch (error) {
+    console.error(error);
+    alert('Failed to load music track');
+  }
+}
+
+// Initialize audio context and start recording from microphone
+function startRecording() {
+  navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(stream => {
+      microphoneStream = stream;
+      microphoneSourceNode = audioCtx.createMediaStreamSource(stream);
+      scriptNode = audioCtx.createScriptProcessor(bufferSize, 1, 1);
+      microphoneSourceNode.connect(scriptNode);
+      scriptNode.connect(audioCtx.destination);
+      scriptNode.onaudioprocess = processMicrophoneAudio;
+      recordBtn.disabled = true;
+      stopBtn.disabled = false;
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Failed to access microphone');
+    });
+}
+
+// Stop recording from microphone and combine with music track
+function stopRecording() {
+  microphoneStream.getTracks()[0].stop();
+  musicSourceNode.stop();
+  recordBtn.disabled = false;
+  stopBtn.disabled = true;
+}
+
+// Process live audio from microphone and combine with music track
+function processMicrophoneAudio(audioProcessingEvent) {
+  const microphoneInput = audioProcessingEvent.inputBuffer.getChannelData(0);
+  const musicInput = musicBuffer.getChannelData(0).slice(0, microphoneInput.length);
+  const combinedOutput = new Float32Array(microphoneInput.length);
+
+  for (let i = 0; i < microphoneInput.length; i++) {
+    combinedOutput[i] = (microphoneInput[i] + musicInput[i]) / 2;
+  }
+
+  const combinedBuffer = audioCtx.createBuffer(1, combinedOutput.length, audioCtx.sampleRate);
+  combinedBuffer.getChannelData(0).set(combinedOutput);
+
+  const combinedSourceNode = audioCtx.createBufferSource();
+  combinedSourceNode.buffer = combinedBuffer;
+  combinedSourceNode.connect(audioCtx.destination);
+  combinedSourceNode.start();
+
+  if (!musicSourceNode) {
+    musicSourceNode = audioCtx.createBufferSource();
+    musicSourceNode.buffer = musicBuffer;
+    musicSourceNode.connect(audioCtx.destination);
+    musicSourceNode.start();
+  }
+}
+
+// Call the loadMusicTrack function with the URL of the music track
+loadMusicTrack('Blessing.mp3');
+</script>
